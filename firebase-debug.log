@@ -1,0 +1,102 @@
+[debug] [2022-02-07T17:35:28.909Z] ----------------------------------------------------------------------
+[debug] [2022-02-07T17:35:28.913Z] Command:       /home/samuelitwaru/.nvm/versions/node/v16.13.2/bin/node /home/samuelitwaru/.nvm/versions/node/v16.13.2/bin/firebase deploy
+[debug] [2022-02-07T17:35:28.914Z] CLI Version:   10.1.4
+[debug] [2022-02-07T17:35:28.914Z] Platform:      linux
+[debug] [2022-02-07T17:35:28.915Z] Node Version:  v16.13.2
+[debug] [2022-02-07T17:35:28.915Z] Time:          Mon Feb 07 2022 20:35:28 GMT+0300 (East Africa Time)
+[debug] [2022-02-07T17:35:28.916Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-02-07T17:35:29.074Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-02-07T17:35:29.076Z] > authorizing via signed-in user (samuelitwaru@gmail.com)
+[debug] [2022-02-07T17:35:29.076Z] [iam] checking project clickeat-3983f for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-02-07T17:35:29.079Z] > refreshing access token with scopes: []
+[debug] [2022-02-07T17:35:29.080Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-02-07T17:35:29.624Z] <<< HTTP RESPONSE 400 {"date":"Mon, 07 Feb 2022 17:35:29 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-02-07T17:35:29.630Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/clickeat-3983f:testIamPermissions [none]
+[debug] [2022-02-07T17:35:29.631Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/clickeat-3983f:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-02-07T17:35:32.107Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/clickeat-3983f:testIamPermissions 401
+[debug] [2022-02-07T17:35:32.108Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/clickeat-3983f:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2022-02-07T17:35:32.109Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2022-02-07T17:35:32.110Z] > refreshing access token with scopes: []
+[debug] [2022-02-07T17:35:32.110Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-02-07T17:35:32.547Z] <<< HTTP RESPONSE 400 {"date":"Mon, 07 Feb 2022 17:35:32 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-02-07T17:35:32.550Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/clickeat-3983f [none]
+[debug] [2022-02-07T17:35:34.047Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/clickeat-3983f 401
+[debug] [2022-02-07T17:35:34.047Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/clickeat-3983f {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2022-02-07T17:35:34.047Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2022-02-07T17:35:34.503Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at module.exports (/home/samuelitwaru/.nvm/versions/node/v16.13.2/lib/node_modules/firebase-tools/lib/responseToError.js:38:12)
+    at RetryOperation._fn (/home/samuelitwaru/.nvm/versions/node/v16.13.2/lib/node_modules/firebase-tools/lib/apiv2.js:282:39)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: Failed to get Firebase project clickeat-3983f. Please make sure the project exists and your account has permission to access it.
+[debug] [2022-02-07T17:36:48.752Z] ----------------------------------------------------------------------
+[debug] [2022-02-07T17:36:48.756Z] Command:       /home/samuelitwaru/.nvm/versions/node/v16.13.2/bin/node /home/samuelitwaru/.nvm/versions/node/v16.13.2/bin/firebase deploy
+[debug] [2022-02-07T17:36:48.757Z] CLI Version:   10.1.4
+[debug] [2022-02-07T17:36:48.757Z] Platform:      linux
+[debug] [2022-02-07T17:36:48.757Z] Node Version:  v16.13.2
+[debug] [2022-02-07T17:36:48.758Z] Time:          Mon Feb 07 2022 20:36:48 GMT+0300 (East Africa Time)
+[debug] [2022-02-07T17:36:48.759Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-02-07T17:36:48.897Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-02-07T17:36:48.897Z] > authorizing via signed-in user (samuelitwaru@gmail.com)
+[debug] [2022-02-07T17:36:48.898Z] [iam] checking project clickeat for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-02-07T17:36:48.900Z] > refreshing access token with scopes: []
+[debug] [2022-02-07T17:36:48.902Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-02-07T17:36:50.533Z] <<< HTTP RESPONSE 400 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","date":"Mon, 07 Feb 2022 17:36:50 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-02-07T17:36:50.538Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/clickeat:testIamPermissions [none]
+[debug] [2022-02-07T17:36:50.539Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/clickeat:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-02-07T17:36:53.101Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/clickeat:testIamPermissions 401
+[debug] [2022-02-07T17:36:53.102Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/clickeat:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2022-02-07T17:36:53.103Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2022-02-07T17:36:53.104Z] > refreshing access token with scopes: []
+[debug] [2022-02-07T17:36:53.104Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-02-07T17:36:53.860Z] <<< HTTP RESPONSE 400 {"date":"Mon, 07 Feb 2022 17:36:53 GMT","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-02-07T17:36:53.863Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/clickeat [none]
+[debug] [2022-02-07T17:36:54.472Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/clickeat 401
+[debug] [2022-02-07T17:36:54.473Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/clickeat {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2022-02-07T17:36:54.473Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2022-02-07T17:36:54.937Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at module.exports (/home/samuelitwaru/.nvm/versions/node/v16.13.2/lib/node_modules/firebase-tools/lib/responseToError.js:38:12)
+    at RetryOperation._fn (/home/samuelitwaru/.nvm/versions/node/v16.13.2/lib/node_modules/firebase-tools/lib/apiv2.js:282:39)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: Failed to get Firebase project clickeat. Please make sure the project exists and your account has permission to access it.
+[debug] [2022-02-07T17:39:39.693Z] ----------------------------------------------------------------------
+[debug] [2022-02-07T17:39:39.698Z] Command:       /home/samuelitwaru/.nvm/versions/node/v16.13.2/bin/node /home/samuelitwaru/.nvm/versions/node/v16.13.2/bin/firebase deploy
+[debug] [2022-02-07T17:39:39.700Z] CLI Version:   10.1.4
+[debug] [2022-02-07T17:39:39.700Z] Platform:      linux
+[debug] [2022-02-07T17:39:39.701Z] Node Version:  v16.13.2
+[debug] [2022-02-07T17:39:39.701Z] Time:          Mon Feb 07 2022 20:39:39 GMT+0300 (East Africa Time)
+[debug] [2022-02-07T17:39:39.702Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-02-07T17:39:39.957Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-02-07T17:39:39.958Z] > authorizing via signed-in user (samuelitwaru@gmail.com)
+[debug] [2022-02-07T17:39:39.958Z] [iam] checking project clickeat for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-02-07T17:39:39.962Z] > refreshing access token with scopes: []
+[debug] [2022-02-07T17:39:39.964Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-02-07T17:39:40.826Z] <<< HTTP RESPONSE 400 {"date":"Mon, 07 Feb 2022 17:39:40 GMT","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-02-07T17:39:40.833Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/clickeat:testIamPermissions [none]
+[debug] [2022-02-07T17:39:40.834Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/clickeat:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-02-07T17:39:43.130Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/clickeat:testIamPermissions 401
+[debug] [2022-02-07T17:39:43.131Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/clickeat:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2022-02-07T17:39:43.132Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2022-02-07T17:39:43.133Z] > refreshing access token with scopes: []
+[debug] [2022-02-07T17:39:43.133Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-02-07T17:39:43.944Z] <<< HTTP RESPONSE 400 {"date":"Mon, 07 Feb 2022 17:39:44 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-02-07T17:39:43.947Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/clickeat [none]
+[debug] [2022-02-07T17:39:44.614Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/clickeat 401
+[debug] [2022-02-07T17:39:44.614Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/clickeat {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2022-02-07T17:39:44.615Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2022-02-07T17:39:47.064Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at module.exports (/home/samuelitwaru/.nvm/versions/node/v16.13.2/lib/node_modules/firebase-tools/lib/responseToError.js:38:12)
+    at RetryOperation._fn (/home/samuelitwaru/.nvm/versions/node/v16.13.2/lib/node_modules/firebase-tools/lib/apiv2.js:282:39)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: Failed to get Firebase project clickeat. Please make sure the project exists and your account has permission to access it.
