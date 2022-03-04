@@ -24,7 +24,17 @@ export default {
 
     methods: {
         changePassword() {
-            console.log('hello');
+            var customer_id = this.$store.getters.userId
+            var data = {
+                oldPassword: this.oldPassword,
+                newPassword: this.newPassword,
+            }
+            if (customer_id) {
+                this.$http.put(`${this.$apiUrl}/update_account_info/${customer_id}?platform=web`, data)
+                .then((response) => {
+                    console.log(response.data);
+                });
+            }
         }
     },
 }

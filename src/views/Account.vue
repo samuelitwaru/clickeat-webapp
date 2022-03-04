@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h3 align="center" class="pa-2">Your Account</h3>
+      <!-- <h3 align="center" class="pa-2">Your Account</h3> -->
       <v-tabs fixed-tabs v-model='tab'>
         <v-tab v-for="item in items" :key="item">{{item}}</v-tab>
       </v-tabs>

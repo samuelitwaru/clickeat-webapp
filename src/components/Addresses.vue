@@ -1,24 +1,22 @@
 <template>
-  <v-item-group>
+<div>
     <v-container>
       <div class="d-flex justify-space-around mb-2">
         <create-address-dialog />
       </div>
       <v-row justify="center">
-        <v-col v-for="address in addresses" :key="address.name" cols="12">
-          <v-item>
-            <Address
+            <Address v-for='address in addresses' :key='address.id'
+              :id='address.id'
               :name="address.name"
               :county="address.county"
-              :subcounty="address.subcounty"
+              :subcounty="address.sub_county"
               :village="address.village"
-              :description="address.description"
+              :description="address.other_details"
+              :isDefault='address.is_default'
             />
-          </v-item>
-        </v-col>
       </v-row>
     </v-container>
-  </v-item-group>
+</div>
 </template>
 
 <script>
@@ -28,16 +26,26 @@ export default {
   components: { Address, CreateAddressDialog },
   data() {
     return {
-      addresses: [
-        {
-          name: "Ayivu (Arua City)",
-          county: "Ayivu (Arua City)",
-          subcounty: "Oluko",
-          village: "Muni",
-          description: "At the university compass",
-        },
-      ],
+      address: null,
+      addresses: [],
     };
+  },
+
+  created() {
+    this.getAddresses();
+  },
+
+  methods: {
+    getAddresses() {
+      var customer_id = this.$store.getters.userId;
+      if (customer_id) {
+        this.$http
+          .get(`${this.$apiUrl}/customer_addresses/${customer_id}?platform=web`)
+          .then((response) => {
+            this.addresses = response.data;
+          });
+      }
+    },
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div align='center' width='80' class="border pa-2">
+    <div align='center' width='80' class="border pa-2">
         <v-img 
             class="rounded-circle"
             src="@/assets/burger.jpg" 

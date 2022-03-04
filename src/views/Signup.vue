@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import LoadingOverlay from '@/components/LoadingOverlay.vue';
 
 
@@ -52,23 +51,20 @@ export default {
   },
 
   created () {
-    axios.get(`${this.$host}/home_products?platform=web`)
-    .then(response => {
-      console.log(response.data)
-    })
+    
   },
 
   methods: {
     signup() {
-      console.log(this.data);
       this.overlay = true;
-      axios.post(
+      this.$http.post(
         `${this.$host}/register?platform=web`,
         this.data
       )
       .then(response => {
         console.log(response.data)
         this.overlay = false
+        this.$router.replace({name: 'Home'})
       })
     },
   },

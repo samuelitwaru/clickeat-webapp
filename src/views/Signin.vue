@@ -44,8 +44,6 @@ export default {
   components: { LoadingOverlay },
   data() {
     return {
-      host: "http://127.0.0.1:5000",
-      // host: 'http://192.168.42.49:5000',
       overlay: false,
       telephone: "samuelitwaru@gmail.com",
       password: "123",
@@ -58,19 +56,17 @@ export default {
         telephone: this.telephone,
         password: this.password,
       };
-      console.log(data);
       this.overlay = true;
-      axios
-        .post(`${this.$host}/customer_sign_in?platform=web`, data)
-        .then((response) => {
-          if (response.data) {
-            this.$store.dispatch('login', response.data)
-            this.$router.replace({name: 'Home'})
-          } else {
-            this.alert = true
-          }
-          this.overlay = false;
-        });
+      axios.post(`${this.$apiUrl}/customer_sign_in?platform=web`, data)
+      .then((response) => {
+        if (response.data) {
+          this.$store.dispatch('login', response.data)
+          this.$router.replace({name: 'Home'})
+        } else {
+          this.alert = true
+        }
+        this.overlay = false;
+      });
     },
   },
 };

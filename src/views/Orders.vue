@@ -11,6 +11,7 @@
         :date="order.date"
       />
     </v-container>
+    <p v-if='!orders.length' align='center'>No Orders</p>
   </div>
 </template>
 
@@ -42,6 +43,21 @@ export default {
         },
       ],
     };
+  },
+  created () {
+    this.getOrders();
+  },
+
+  methods: {
+    getOrders(){
+      var customer_id = this.$store.state.user.customer_id
+      console.log(customer_id);
+      this.$http.get(`${this.$apiUrl}/customer_orders/${customer_id}?platform=web`)
+      .then((response) => {
+        this.orders = response.data
+        console.log(this.orders);
+      });
+    }
   },
 };
 </script>

@@ -12,6 +12,8 @@ import Drinks from '../views/Drinks.vue'
 import Signup from '../views/Signup.vue'
 import Signin from '../views/Signin.vue'
 import Restaurants from '../views/Restaurants.vue'
+import Restaurant from '../views/Restaurant.vue'
+import store from '../store'
 
 Vue.use(VueRouter)
 
@@ -67,6 +69,11 @@ const routes = [
     component: Restaurants
   },
   {
+    path: '/restaurants/:id',
+    name: 'Restaurant',
+    component: Restaurant
+  },
+  {
     path: '/signup',
     name: 'Signup',
     component: Signup
@@ -81,6 +88,27 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   routes
+})
+
+var protectedRoutes = [
+  '/cart',
+  '/checkout',
+]
+
+router.beforeEach((to, from, next) => {
+  var loggedIn = store.getters.loggedIn
+  var path = to.fullPath
+  if (to.fullPath in protectedRoutes && !store.state.token){
+    next('/');
+  }
+  console.log(loggedIn)
+  if (!loggedIn && path == '/account') {
+    next('/signin')
+  }
+  if ((path=='/signup' || path=='/signin') && loggedIn) {
+    next('/')
+  }
+  next()
 })
 
 export default router

@@ -38,6 +38,26 @@
 
 <script>
   export default {
+    components: {},
+    data() {
+      return {
+        product: {},
+      }
+    },
+
+    created () {
+      this.getProduct();
+    },
+
+    methods: {
+      getProduct() {
+        console.log(this.$route)
+        this.$http.get(`${this.$apiUrl}/products/1?platform=web`)
+        .then((response) => {
+          console.log('>>>>>>>>>>>'+response.data);
+        });
+      },
+    },
   }
 </script>
 

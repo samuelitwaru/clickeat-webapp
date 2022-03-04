@@ -1,18 +1,13 @@
 <template>
   <div>
-    <Banner />
-    <v-container class="pa-0">
-      <v-row>
-        <v-col cols='12' md='6'>
-          <Categories />
-        </v-col>
-        <v-col  cols='12' md='6'>
-          <Restaurants />
-        </v-col>
-      </v-row>
+    <banner />
+    <v-container class="">
+      <categories />
+      <restaurants />
+      <products title='Top Selling' :products='products'/>
+    <app-alert />
+    <subcription-modal />
     </v-container>
-    <Products showHeading='true'/>
-    <Favourites />
   </div>
 </template>
 
@@ -21,7 +16,9 @@ import Banner from '@/components/Banner';
 import Categories from '@/components/Categories';
 import Restaurants from '@/components/Restaurants';
 import Products from '@/components/Products';
-import Favourites from '@/components/Favourites';
+import AppAlert from '../components/AppAlert.vue';
+import SubcriptionModal from '../components/SubcriptionModal.vue';
+// import Favourites from '@/components/Favourites';
 
 export default {
   components: {
@@ -29,7 +26,28 @@ export default {
     Categories,
     Restaurants,
     Products,
-    Favourites,
+    AppAlert,
+    SubcriptionModal
+    // Favourites,
+  },
+
+  data() {
+    return {
+      products: []
+    }
+  },
+
+  created () {
+    this.getTopSellingProducts()
+  },
+
+  methods: {
+    getTopSellingProducts() {
+      this.$http.get(`${this.$apiUrl}/top_selling_products?platform=web`)
+      .then(response => {
+        this.products = response.data
+      });  
+    },
   },
 }
 </script>

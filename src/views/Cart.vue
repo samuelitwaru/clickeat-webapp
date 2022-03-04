@@ -14,16 +14,16 @@
               />
             </td>
             <td>
-              {{ item.name }}
+              {{ item.product_name }}
               <div class="d-flex my-2 align-center">
-                <button class='btn'>-</button>
+                <button class='btn' @click='adjustCartQuantity(item, -1)' :disabled='item.quantity==1'>-</button>
                 <div outlined class='qty'>{{item.quantity}}</div>
-                <button class="btn">+</button>
+                <button class="btn" @click='adjustCartQuantity(item, 1)'>+</button>
               </div>
-              {{ item.unitPrice * item.quantity }}
+              {{ item.unit_price * item.quantity }}
             </td>
             <td align="center">
-              <v-btn outlined color="red" dark>
+              <v-btn outlined color="red" dark @click='removeFromCart(item)'>
                 <v-icon> mdi-delete </v-icon>
               </v-btn>
             </td>
@@ -51,18 +51,7 @@
 export default {
   data() {
     return {
-      products: [
-        {
-          name: "Frozen Yogurt",
-          quantity: 2,
-          unitPrice: 2500,
-        },
-        {
-          name: "Donut",
-          quantity: 100,
-          unitPrice: 1000,
-        },
-      ],
+      
     };
   },
   computed: {
@@ -70,10 +59,48 @@ export default {
       var total = 0;
       for (const index in this.products) {
         var item = this.products[index];
-        total = total + item.unitPrice * item.quantity;
+        total = total + item.unit_price * item.quantity;
       }
       return total;
     },
+    products() {
+      return this.$store.state.cartProducts
+    }
+  },
+  created () {
+  },
+  methods: {
+    removeFromCart(product){
+      this.$confirm(`Remove ${product.product_name} from cart?`, {})
+      .then(res => {
+        if(res){
+          this.$store.state.overlay = true
+          this.$http.delete(`${this.$apiUrl}/cart_operations/${product.product_id}?platform=web`)
+          .then((response) => {
+            this.$store.dispatch("setCartProducts", response.data.cart_items);
+            this.$store.state.overlay = false
+          });
+        }
+      })
+    },
+    adjustCartQuantity(product, quantity) {
+      var customer_id = this.$store.state.user.customer_id
+      var newQuantity = product.quantity + quantity
+      if (newQuantity > 0){
+        var data = {
+          "product_id": product.product_id,
+          "quantity": newQuantity,
+        }
+        console.log(product)
+        this.$store.state.overlay = true
+        this.$http.put(`${this.$apiUrl}/cart_operations/${customer_id}?platform=web`, data)
+        .then((response) => {
+          console.log(response)
+          this.$store.dispatch("setCartProducts", response.data.cart_items);
+          this.$store.state.overlay = false
+        });
+      }
+    }
   },
 };
 </script>
@@ -101,7 +128,12 @@ tbody > tr:hover {
 .btn:focus {
   outline: none;
 }
-
+.btn:disabled{
+  background: rgb(250, 250, 250);
+  color: #dddddd;
+  border: 1px solid #ff4800;
+  cursor: default;
+}
 .qty {
   border-top: 1px solid #ff4800;
   border-bottom: 1px solid #ff4800;
