@@ -17,8 +17,8 @@
                   '/business_profile_picture/' +
                   restaurant.business_profile_picture
                 "
-                max-width="80px"
-                height='80'
+                width="80"
+                height="80"
               >
               </v-img>
               <p>{{ restaurant.business_name }}</p>

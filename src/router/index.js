@@ -93,6 +93,7 @@ const router = new VueRouter({
 var protectedRoutes = [
   '/cart',
   '/checkout',
+  '/account',
 ]
 
 router.beforeEach((to, from, next) => {
@@ -102,7 +103,7 @@ router.beforeEach((to, from, next) => {
     next('/');
   }
   console.log(loggedIn)
-  if (!loggedIn && path == '/account') {
+  if (!loggedIn && protectedRoutes.indexOf(path)!=-1) {
     next('/signin')
   }
   if ((path=='/signup' || path=='/signin') && loggedIn) {

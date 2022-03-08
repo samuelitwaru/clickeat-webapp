@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loading-overlay :overlay="overlay" />
     <h3 align="center" class="pa-2">Drinks</h3>
     <div class="d-flex justify-center">
         <v-chip-group active-class="primary--text">
@@ -21,13 +20,11 @@
 </template>
 
 <script>
-import LoadingOverlay from '../components/LoadingOverlay.vue';
 import Products from '../components/Products.vue';
 export default {
-  components: { Products, LoadingOverlay },
+  components: { Products },
   data() {
     return {
-      overlay: false,
       categories: ['Soft Drinks', 'Liquors', 'Processed Juice', 'Beers', 'Energy Drinks', 'Water'],
       drinks: [
         {name: 'Cock', description: '', price:20000, discount:20, image: require('@/assets/soda.jpeg')},
@@ -38,7 +35,6 @@ export default {
   },
 
   created () {
-    this.overlay = true
     this.getCategories();
   },
 
@@ -50,7 +46,6 @@ export default {
         if(this.categories.length){
           this.getDrinksByCategory(this.categories[0].sub_category_id)
         }
-        this.overlay = false
       });
     },
 

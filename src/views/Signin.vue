@@ -1,6 +1,5 @@
 <template>
   <div>
-    <loading-overlay :overlay="overlay" />
     <v-card class="mx-auto my-4 pa-4" width="400px">
       <h3 align="center" class="pa-3">SIGNIN</h3>
       <v-alert transition="scale-transition" outlined dismissible type="error" v-model='alert'>
@@ -37,14 +36,10 @@
 </template>
 
 <script>
-import axios from "axios";
-import LoadingOverlay from "../components/LoadingOverlay.vue";
-
 export default {
-  components: { LoadingOverlay },
+  components: {  },
   data() {
     return {
-      overlay: false,
       telephone: "samuelitwaru@gmail.com",
       password: "123",
       alert: false
@@ -56,8 +51,8 @@ export default {
         telephone: this.telephone,
         password: this.password,
       };
-      this.overlay = true;
-      axios.post(`${this.$apiUrl}/customer_sign_in?platform=web`, data)
+      this.$store.state.overlay = true;
+      this.$http.post(`${this.$apiUrl}/customer_sign_in?platform=web`, data)
       .then((response) => {
         if (response.data) {
           this.$store.dispatch('login', response.data)
@@ -65,7 +60,7 @@ export default {
         } else {
           this.alert = true
         }
-        this.overlay = false;
+        this.$store.state.overlay = false;
       });
     },
   },

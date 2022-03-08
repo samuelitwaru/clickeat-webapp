@@ -1,5 +1,6 @@
 <template>
   <div>
+    <loading-overlay :overlay="overlay" />
     <v-app-bar app color="primary">
       <router-link to="/">
         <div>
@@ -63,9 +64,10 @@
 </template>
 
 <script>
+import LoadingOverlay from './LoadingOverlay.vue';
 export default {
   name: "Menu",
-  components: {},
+  components: {LoadingOverlay},
   data() {
     return {
       drawer: false,

@@ -1,17 +1,38 @@
 <template>
   <div>
     <h3 align="center">Restaurant</h3>
-    <div class="d-flex justify-center">
-        <v-chip-group active-class="primary--text">
-            <v-chip
-                v-for="category in categories"
-                :key="category.sub_category"
-                @click="getCategory(category.sub_category)"
-                class="justify-center"
+    <div v-if="restaurant">
+      <v-card class="mx-auto" outlined>
+        <v-list-item three-line>
+          <v-list-item-content>
+            <div class="text-overline mb-4">
+              {{status}}
+            </div>
+            <v-list-item-title> {{ restaurant.business_name }} </v-list-item-title>
+            <v-list-item-subtitle
+              >Open from {{ restaurant.operation_start_time }} to {{ restaurant.operation_stop_time }}</v-list-item-subtitle
             >
-                {{ category.sub_category }}
-            </v-chip>
-        </v-chip-group>
+          </v-list-item-content>
+          <v-img
+            class="rounded-circle"
+            :src="$staticUrl + '/business_profile_picture/' + restaurant.business_profile_picture"
+            max-width="80px"
+          >
+          </v-img>
+        </v-list-item>
+      </v-card>
+    </div>
+    <div class="d-flex justify-center">
+      <v-chip-group active-class="primary--text">
+        <v-chip
+          v-for="category in categories"
+          :key="category.sub_category"
+          @click="getCategory(category.sub_category)"
+          class="justify-center"
+        >
+          {{ category.sub_category }}
+        </v-chip>
+      </v-chip-group>
     </div>
     <products :products="products"></products>
   </div>
@@ -25,10 +46,20 @@ export default {
     return {
       products: [],
       categories: [],
+      restaurant: null,
     };
   },
   created() {
     this.getProducts();
+    this.getRestaurant();
+  },
+  computed: {
+    status() {
+      if (this.restaurant.operational_status){
+        return "open"
+      }
+      return "closed"
+    }
   },
   methods: {
     getProducts() {
@@ -41,8 +72,25 @@ export default {
         });
     },
 
-    getCategory(index) {
-      console.log(index);
+    getRestaurant() {
+      var restaurantId = this.$route.params.id;
+      console.log(
+        `${this.$apiUrl}/get_restaurant/${restaurantId}?platform=web`
+      );
+      this.$http
+        .get(`${this.$apiUrl}/get_restaurant/${restaurantId}?platform=web`)
+        .then((response) => {
+          this.restaurant = response.data;
+        });
+    },
+
+    getCategory(name) {
+      var filtered = this.categories.filter(
+        (category) => category.sub_category == name
+      );
+      if (filtered.length) {
+        this.products = filtered[0].products;
+      }
     },
   },
 };

@@ -8,7 +8,9 @@ export default new Vuex.Store({
         token: localStorage.getItem('token') || null,
         user: null,
         overlay: false,
-        cartProducts: []
+        cartProducts: [],
+        deliveryAddress: null,
+        paymentMethod: null
     },
     getters: {
         loggedIn (state) {

@@ -8,9 +8,10 @@
           <tr v-for="item in products" :key="item.name">
             <td align="center">
               <v-img
-                src="@/assets/burger.jpg"
-                class="rounded-circle"
+                :src="$staticUrl+'/product_images/'+item.product_image"
+                class="rounded-circle border"
                 width="50"
+                height="50"
               />
             </td>
             <td>
@@ -95,7 +96,6 @@ export default {
         this.$store.state.overlay = true
         this.$http.put(`${this.$apiUrl}/cart_operations/${customer_id}?platform=web`, data)
         .then((response) => {
-          console.log(response)
           this.$store.dispatch("setCartProducts", response.data.cart_items);
           this.$store.state.overlay = false
         });

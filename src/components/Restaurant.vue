@@ -3,7 +3,7 @@
         <v-img 
             class="rounded-circle"
             src="@/assets/burger.jpg" 
-            max-width="80px">
+            min-width="80px">
         </v-img>
         <p>{{ name }}</p>
     </div>

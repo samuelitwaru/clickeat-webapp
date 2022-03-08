@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center fixed-bottom" style="background-color: white">
+  <div class="text-center fixed-bottom" v-if='sheet' style="background-color: white">
     Clickeat is better on the App.
     <a
       href="https://play.google.com/store/apps/details?id=com.clickEat.ug&hl=en&gl=US"
