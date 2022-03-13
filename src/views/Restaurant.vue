@@ -2,25 +2,29 @@
   <div>
     <h3 align="center">Restaurant</h3>
     <div v-if="restaurant">
-      <v-card class="mx-auto" outlined>
+      <div class="mx-auto" outlined>
         <v-list-item three-line>
-          <v-list-item-content>
-            <div class="text-overline mb-4">
-              {{status}}
-            </div>
-            <v-list-item-title> {{ restaurant.business_name }} </v-list-item-title>
-            <v-list-item-subtitle
-              >Open from {{ restaurant.operation_start_time }} to {{ restaurant.operation_stop_time }}</v-list-item-subtitle
-            >
-          </v-list-item-content>
           <v-img
             class="rounded-circle"
-            :src="$staticUrl + '/business_profile_picture/' + restaurant.business_profile_picture"
+            :src="
+              $staticUrl +
+              '/business_profile_picture/' +
+              restaurant.business_profile_picture
+            "
             max-width="80px"
           >
           </v-img>
+          <v-list-item-content class="px-3">
+            <v-list-item-title>
+              {{ restaurant.business_name }}
+            </v-list-item-title>
+            <v-list-item-subtitle
+              >Open from {{ restaurant.operation_start_time }} to
+              {{ restaurant.operation_stop_time }}</v-list-item-subtitle
+            >
+          </v-list-item-content>
         </v-list-item>
-      </v-card>
+      </div>
     </div>
     <div class="d-flex justify-center">
       <v-chip-group active-class="primary--text">
@@ -55,18 +59,17 @@ export default {
   },
   computed: {
     status() {
-      if (this.restaurant.operational_status){
-        return "open"
+      if (this.restaurant.operational_status) {
+        return "open";
       }
-      return "closed"
-    }
+      return "closed";
+    },
   },
   methods: {
     getProducts() {
       this.$http
         .get(`${this.$apiUrl}/products/${this.$route.params.id}?platform=web`)
         .then((response) => {
-          console.log(response.data);
           this.categories = response.data;
           this.products = this.categories[0].products;
         });
@@ -74,13 +77,11 @@ export default {
 
     getRestaurant() {
       var restaurantId = this.$route.params.id;
-      console.log(
-        `${this.$apiUrl}/get_restaurant/${restaurantId}?platform=web`
-      );
       this.$http
         .get(`${this.$apiUrl}/get_restaurant/${restaurantId}?platform=web`)
         .then((response) => {
           this.restaurant = response.data;
+          console.log(this.restaurant);
         });
     },
 

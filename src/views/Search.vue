@@ -2,18 +2,19 @@
   <div>
     <div class="pa-2">
       <v-row>
-        <v-col cols="10">
+        <v-col cols="9">
           <v-text-field
             autofocus
             v-model="searchString"
             outlined
-            placeholder="Search Your Meal"
+            placeholder="eg Goat stew"
+            @keyup.enter='search()'
           >
           </v-text-field>
         </v-col>
-        <v-col cols="2">
+        <v-col cols="3">
           <v-btn color="primary" x-large @click="searchProducts()"
-            >SEARCH</v-btn
+            ><v-icon>mdi-search</v-icon></v-btn
           >
         </v-col>
       </v-row>
@@ -34,7 +35,7 @@ export default {
   data() {
     return {
       products: [],
-      searchString: "",
+      searchString: this.$route.params.searchString,
     };
   },
 
@@ -43,6 +44,10 @@ export default {
   },
 
   methods: {
+    search(){
+			this.$router.push({name:'Search', params: {searchString:this.searchString}})
+      this.searchProducts()
+    },
     searchProducts() {
       this.$store.state.overlay = true;
       this.$http

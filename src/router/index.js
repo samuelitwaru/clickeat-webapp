@@ -13,6 +13,7 @@ import Signup from '../views/Signup.vue'
 import Signin from '../views/Signin.vue'
 import Restaurants from '../views/Restaurants.vue'
 import Restaurant from '../views/Restaurant.vue'
+import Category from '../views/Category.vue'
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -34,7 +35,7 @@ const routes = [
     component: Cart
   },
   {
-    path: '/search',
+    path: '/search/:searchString',
     name: 'Search',
     component: Search
   },
@@ -74,6 +75,11 @@ const routes = [
     component: Restaurant
   },
   {
+    path: '/categories/:id',
+    name: 'Category',
+    component: Category
+  },
+  {
     path: '/signup',
     name: 'Signup',
     component: Signup
@@ -94,6 +100,7 @@ var protectedRoutes = [
   '/cart',
   '/checkout',
   '/account',
+  '/orders'
 ]
 
 router.beforeEach((to, from, next) => {
@@ -102,7 +109,6 @@ router.beforeEach((to, from, next) => {
   if (to.fullPath in protectedRoutes && !store.state.token){
     next('/');
   }
-  console.log(loggedIn)
   if (!loggedIn && protectedRoutes.indexOf(path)!=-1) {
     next('/signin')
   }

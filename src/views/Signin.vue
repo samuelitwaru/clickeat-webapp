@@ -26,7 +26,7 @@
           <p class="mt-4">
             <small>Don't have an Account ?</small>
             <router-link to="/signup">
-              <v-btn plain color="primary" class="mr-4">Signup</v-btn>
+              <v-btn plain color="primary" class="mr-4" @click="$store.state.showSigninModal=false">Signup</v-btn>
             </router-link>
           </p>
         </div>
@@ -56,11 +56,12 @@ export default {
       .then((response) => {
         if (response.data) {
           this.$store.dispatch('login', response.data)
-          this.$router.replace({name: 'Home'})
+          if(this.$route.path === '/signin') this.$router.push({path: '/'})
         } else {
           this.alert = true
         }
         this.$store.state.overlay = false;
+        this.$store.state.showSigninModal = false;
       });
     },
   },

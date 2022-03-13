@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>Delivering to:</h3>
-    <v-card class="my-2" max-width="344" outlined>
+    <v-card class="my-2" max-width="344" outlined v-if="deliveryAddress">
       <v-list-item three-line>
         <v-list-item-content>
           <v-list-item-title> {{ deliveryAddress.village }} </v-list-item-title>
@@ -97,9 +97,6 @@ export default {
   data() {
     return {
     };
-  },
-  created () {
-      console.log(this.paymentMethod)
   },
 };
 </script>

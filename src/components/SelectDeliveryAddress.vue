@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-select
+    <!-- <v-select
       v-model="selectedAddress"
       :items="addresses"
       item-text="village"
@@ -9,9 +9,9 @@
       persistent-hint
       return-object
       single-line
-    ></v-select>
+    ></v-select> -->
 
-    <v-card class="my-2" max-width="344" outlined>
+    <v-card class="my-2" max-width="344" outlined v-if='selectedAddress'>
       <v-list-item three-line>
         <v-list-item-content>
           <v-list-item-title> {{ selectedAddress.village }} </v-list-item-title>

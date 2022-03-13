@@ -1,13 +1,13 @@
 <template>
     <div class="banner-image">
         <div class="banner-text">
-            <h2 style="font-size:40px">Order Your Meal Now</h2>
+            <h2 style="font-size:40px">Order Delicacies at Your Convenience</h2>
 			<div class='my-2' align='center'>
-				<router-link to='/search' >
-				<v-text-field label="Search Meal" solo style="width:30rem"></v-text-field>
-				</router-link>
+				<!-- <router-link to='/search' > -->
+				<v-text-field label="eg Chicken stew" v-model="searchString" solo style="width:30rem" @keyup.enter='search()'></v-text-field>
+				<!-- </router-link> -->
 			</div>
-			<div class='my-2'>
+			<div class='my-2 d-sm-none'>
 				<a href="tel:0785857000"><v-btn color="primary" outlined><v-icon>mdi-phone</v-icon> Call To Order</v-btn></a>
 			</div>
 			<div class="d-flex justify-center px-auto" v-if='!$store.getters.loggedIn'>
@@ -27,6 +27,16 @@
 
 <script>
 export default {
+	data() {
+		return {
+			searchString: '',
+		}
+	},
+	methods: {
+		search() {
+			this.$router.push({name:'Search', params: {searchString:this.searchString}})
+		},
+	},
 }
 </script>
 
@@ -42,11 +52,12 @@ export default {
 	}
 
 	.banner-text {
-		width: 90%;
+		width: 70%;
 		text-align: center;
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 	}
+	
 </style>

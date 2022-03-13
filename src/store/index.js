@@ -10,7 +10,10 @@ export default new Vuex.Store({
         overlay: false,
         cartProducts: [],
         deliveryAddress: null,
-        paymentMethod: null
+        paymentMethod: null,
+        categories: [],
+        showSigninModal: false,
+        shoMsgModal: false,
     },
     getters: {
         loggedIn (state) {
@@ -37,6 +40,9 @@ export default new Vuex.Store({
         },
         setCartProducts (state, cartProducts) {
             state.cartProducts = cartProducts
+        },
+        setShowSigninModal (state, value) {
+            state.showSigninModal = value
         }
     },
     actions: {
@@ -52,6 +58,9 @@ export default new Vuex.Store({
         },
         setCartProducts ({commit}, cartProducts) {
             commit('setCartProducts', cartProducts)
+        },
+        setShowSigninModal ({commit}, value) {
+            commit('setShowSigninModal', value)
         }
     },
     modules: {

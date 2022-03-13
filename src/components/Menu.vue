@@ -1,6 +1,7 @@
 <template>
   <div>
     <loading-overlay :overlay="overlay" />
+    <signin-modal />
     <v-app-bar app color="primary">
       <router-link to="/">
         <div>
@@ -8,7 +9,7 @@
         </div>
       </router-link>
       <router-link to="/">
-        <v-toolbar-title  class="white--text">Clickeat</v-toolbar-title>
+        <v-toolbar-title class="white--text">Clickeat</v-toolbar-title>
       </router-link>
       <v-spacer></v-spacer>
 
@@ -24,22 +25,20 @@
         </v-btn>
       </router-link>
 
-      
-        <router-link to="/cart">
-          <v-btn icon>
-            <v-icon>mdi-cart</v-icon> <span></span>
-            <v-badge color="black" :content="cartCount" v-if="cartCount">
-            </v-badge>
-          </v-btn>
-        </router-link>
-      
+      <router-link to="/cart">
+        <v-btn icon>
+          <v-icon>mdi-cart</v-icon> <span></span>
+          <v-badge color="black" :content="cartCount" v-if="cartCount">
+          </v-badge>
+        </v-btn>
+      </router-link>
 
-      <v-btn v-if='!drawer' icon @click="drawer = true">
+      <v-btn v-if="!drawer" icon @click="drawer = true">
         <v-icon>mdi-hamburger</v-icon>
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" app right>
+    <v-navigation-drawer v-model="drawer" app right temporary>
       <v-list dense>
         <router-link v-for="(link, index) in links" :key="index" :to="link.to">
           <v-list-item link>
@@ -64,10 +63,11 @@
 </template>
 
 <script>
-import LoadingOverlay from './LoadingOverlay.vue';
+import LoadingOverlay from "./LoadingOverlay.vue";
+import SigninModal from "./SigninModal.vue";
 export default {
   name: "Menu",
-  components: {LoadingOverlay},
+  components: { LoadingOverlay, SigninModal },
   data() {
     return {
       drawer: false,
@@ -88,35 +88,36 @@ export default {
     };
   },
 
-  created () {
+  created() {
     setInterval(this.getCartProducts, 5000);
   },
 
   computed: {
     overlay() {
-      return this.$store.state.overlay
+      return this.$store.state.overlay;
     },
     cartCount() {
-      return this.$store.state.cartProducts.length
-    }
+      return this.$store.state.cartProducts.length;
     },
+  },
 
   methods: {
     logout() {
       this.$store.dispatch("logout");
       this.drawer = false;
       if (this.$router.history.current.name != "Home") {
-        this.$router.replace({ name: "Home" });
+        if(this.$route.path !== '/') this.$router.replace({ name: "Home" });
       }
     },
 
     getCartProducts() {
-      var customer_id = this.$store.getters.userId
+      var customer_id = this.$store.getters.userId;
       if (customer_id) {
-        this.$http.get(`${this.$apiUrl}/cart_operations/${customer_id}?platform=web`)
-        .then((response) => {
-          this.$store.dispatch("setCartProducts", response.data.cart_items);
-        });
+        this.$http
+          .get(`${this.$apiUrl}/cart_operations/${customer_id}?platform=web`)
+          .then((response) => {
+            this.$store.dispatch("setCartProducts", response.data.cart_items);
+          });
       }
     },
   },

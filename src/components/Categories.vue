@@ -4,7 +4,7 @@
   <v-sheet class="d-flex justify-space-around">
     <v-slide-group show-arrows class="pa-2">
       <v-slide-item v-for="category in categories" :key="category.id" class="mx-2 border rounded" >
-        <router-link to="/">
+        <router-link :to="`/categories/${category.id}`">
           <div align='center' class="pa-2">
             <p>{{category.name}}</p>
             <v-img 
@@ -35,6 +35,7 @@ export default {
       this.$http.get(`${this.$apiUrl}/fetch_all_subcats?platform=web`)
       .then((response) => {
         this.categories = response.data
+        this.$store.state.categories = this.categories
       });
     },
   },

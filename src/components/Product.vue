@@ -14,8 +14,8 @@
       <p style="min-height: 4.5rem; max-height: 4.5rem" class="ma-auto">
         {{ name }}
       </p>
-      <p style="min-height: 25px" class="ma-auto">{{ discount }}</p>
-      <p style="min-height: 25px" class="ma-auto">{{ price }}</p>
+      <p style="min-height: 3rem" class="ma-auto"><span v-if="discount"><strike>{{product.price}}</strike> {{ discount }}% OFF</span></p>
+      <p style="min-height: 25px" class="ma-auto">{{ computedPrice }}</p>
       <v-btn rounded color="primary" @click="addToCart" dark>Add</v-btn>
     </div>
   </div>
@@ -23,16 +23,28 @@
 
 <script>
 export default {
-  props: ["name", "discount", "price", "image", "product"],
+  props: ["name", "price", "image", "product", "promotional_price"],
   data() {
     return {};
   },
 
   created() {},
 
+  computed: {
+    discount() {
+      if (this.promotional_price) {
+          return Math.round((this.price-this.promotional_price)/this.price*100) 
+      }
+      return null
+    },
+    computedPrice(){
+      return this.promotional_price || this.price
+    }
+  },
+
   methods: {
     addToCart() {
-      var customer_id = this.$store.state.user.customer_id;
+      var customer_id = this.$store.getters.userId;
 
       if (customer_id) {
         var data = {
@@ -40,7 +52,7 @@ export default {
           customer_id: customer_id,
           product_name: this.name,
           product_image: this.image,
-          unit_price: this.price,
+          unit_price: this.promotional_price || this.price,
           quantity: 1,
           free_delivery: false,
           restaurant: this.product.resturant,
@@ -50,9 +62,13 @@ export default {
         this.$http
           .post(`${this.$apiUrl}/addToCart?platform=web`, data)
           .then((response) => {
-            console.log(response);
+            alert(response.data.message);
             this.$store.state.overlay = false;
           });
+      }else{
+        this.$store.state.showSigninModal = true;
+        // this.$store.commit('setShowSigninModal', false)
+        console.log( this.$store.state.showSigninModal);
       }
     },
   },

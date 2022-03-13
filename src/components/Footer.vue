@@ -1,40 +1,73 @@
 <template>
   <v-footer color="black lighten-1" class="white--text mt-8">
-    <!-- <v-row > -->
-      <v-col>
-        <h4 red lighten-5>About</h4>
-        <hr class="my-2" width="50%;" />
-        <p class="ma-auto">
-          We make it easy to catch your meal anytime anywhere.
-        </p>
-        <p class="ma-auto">
-          <span>&copy;</span> Clickeat 2022
-        </p>
-      </v-col>
-      <v-col>
-        <h4 red lighten-5>Contacts</h4>
-        <hr class="my-2" width="50%;" />
-        <p class="ma-auto">0785857000 <a href="tel:0785857000">Call</a></p>
-        <p class="ma-auto">0752688849 <a href="tel:0752688849">Call</a></p>
-        <p class="ma-auto">0787789799 <a href="tel:0787789799">Call</a></p>
-        <p class="ma-auto"><a href="mailto:amobittechnologiez@gmail.com">amobittechnologiez@gmail.com</a></p>
-      </v-col>
-      
-      <v-col>
-        <h4 red lighten-5>Go to</h4>
-        <hr class="my-2" width="50%;" />
-        <p class="ma-auto"><router-link to="/restaurants">Restaurants</router-link></p>
-        <p class="ma-auto"><router-link to="/drinks">Drinks</router-link></p>
-        <p class="ma-auto"><router-link to="/cart">Cart</router-link></p>
-        <p class="ma-auto"><router-link to="/orders">Orders</router-link></p>
-        <p class="ma-auto"><router-link to="/account">Account</router-link></p>
-      </v-col>
-    <!-- </v-row> -->
+    <v-col cols="12" class="d-flex justify-center">
+      <a href="https://facebook.com/amobittechnologies" class="mx-4"
+        ><v-icon color="primary">mdi-facebook</v-icon></a
+      >
+      <a href="https://twitter.com/Clickeat_ug" class="mx-4"
+        ><v-icon color="primary">mdi-twitter</v-icon></a
+      >
+      <a href="https://wa.me/0785857000" class="mx-4"
+        ><v-icon color="primary">mdi-whatsapp</v-icon></a
+      >
+      <a href=""><v-icon color="primary" class="mx-4">mdi-instagram</v-icon></a>
+    </v-col>
+    <v-col cols="12" sm="4">
+      <h4 red lighten-5>Trending Categories</h4>
+      <hr class="my-2" width="50%;" />
+      <p class="ma-auto" v-for="category in categories" :key="category.id">
+        <router-link :to="`/categories/${category.id}`">{{ category.name }}</router-link>
+      </p>
+    </v-col>
+    <v-col cols="12" sm="4">
+      <h4 red lighten-5>Contacts</h4>
+      <hr class="my-2" width="50%;" />
+      <p class="ma-auto">
+        <v-icon color="white">mdi-whatsapp</v-icon> 0785857000
+        <a href="tel:0785857000">Call</a>
+      </p>
+      <p class="ma-auto">
+        <v-icon color="white">mdi-phone</v-icon> 0752688849
+        <a href="tel:0702726557">Call</a>
+      </p>
+      <p class="ma-auto">
+        <v-icon color="white">mdi-phone</v-icon> 0787789799
+        <a href="tel:0787789799">Call</a>
+      </p>
+      <p class="ma-auto">
+        <v-icon color="white">mdi-email-outline</v-icon>
+        <a href="mailto:amobittechnologiez@gmail.com"
+          >amobittechnologiez@gmail.com</a
+        >
+      </p>
+    </v-col>
+
+    <v-col cols="12" sm="4">
+      <h4 red lighten-5>Quick Links</h4>
+      <hr class="my-2" width="50%;" />
+      <p class="ma-auto">
+        <router-link to="/restaurants">Restaurants</router-link>
+      </p>
+      <p class="ma-auto"><router-link to="/drinks">Drinks</router-link></p>
+      <p class="ma-auto"><router-link to="/cart">Cart</router-link></p>
+      <p class="ma-auto"><router-link to="/orders">Orders</router-link></p>
+      <p class="ma-auto"><router-link to="/account">Account</router-link></p>
+    </v-col>
+    <v-col cols="12" class="d-flex justify-center">
+      <p>Clickeat is a product of Amobit Technologies &copy;Clickeat</p>
+    </v-col>
   </v-footer>
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    categories() {
+      var categories = this.$store.state.categories;
+      return categories.slice(0, 5);
+    },
+  },
+};
 </script>
 
 <style>

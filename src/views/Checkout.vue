@@ -27,9 +27,10 @@
             persistent-hint
             return-object
             single-line
+            @change="$store.state.deliveryAddress=selectedAddress"
           ></v-select>
 
-          <v-card class="my-2" max-width="344" outlined>
+          <v-card class="my-2" max-width="344" outlined v-if="selectedAddress">
             <v-list-item three-line>
               <v-list-item-content>
                 <v-list-item-title>
@@ -94,6 +95,37 @@
           :total="total"
           :deliveryFee="deliveryFee"
         />
+        <v-row>
+          <v-col cols="6">
+            <h3>Pre-order</h3>
+            <v-card
+              class="my-2 px-2"
+              max-width="344"
+              outlined
+              v-if="paymentMethod"
+            >
+              <v-checkbox
+                v-model="preOrder"
+                label="Check this to make the order later"
+              ></v-checkbox>
+            </v-card>
+          </v-col>
+          <v-col cols="6">
+            <h3>Delivey Contact</h3>
+            <v-card
+              class="my-2 px-2"
+              max-width="344"
+              outlined
+              v-if="deliveryContact"
+            >
+              <v-text-field
+                v-model="deliveryContact"
+                label="Delivery Contact"
+                required
+              ></v-text-field>
+            </v-card>
+          </v-col>
+        </v-row>
         <div class="d-flex justify-end justify-space-between">
           <v-btn color="primary" outlined @click="e1 = 2"> Back </v-btn>
           <div>
@@ -126,6 +158,9 @@ export default {
         },
       ],
       selectedMethod: {},
+      preOrder: false,
+      customer: this.$store.state.user,
+      deliveryContact: this.$store.state.user.contact,
     };
   },
 
@@ -133,7 +168,7 @@ export default {
     this.getAddresses();
     this.getCustomerAddresses();
     this.selectedMethod = this.methods[0];
-    this.$store.state.paymentMethod = this.selectedMethod
+    this.$store.state.paymentMethod = this.selectedMethod;
   },
 
   computed: {
@@ -182,7 +217,7 @@ export default {
             this.customerAddresses = response.data;
             this.setDefaultAddress();
             this.$store.state.deliveryAddress = this.selectedAddress;
-            this.calcDeliveryFee()
+            this.calcDeliveryFee();
           });
       }
     },
@@ -190,11 +225,17 @@ export default {
       var filtered = this.customerAddresses.filter(
         (address) => address.is_default
       );
+      console.log(this.customerAddresses.length);
+      console.log(filtered.length);
       if (filtered.length) {
         this.selectedAddress = filtered[0];
         return;
+      }else if (this.customerAddresses.length) {
+        this.selectedAddress = this.customerAddresses[0]
+        return
       }
       this.selectedAddress = {};
+      console.log(this.selectedAddress);
     },
     calcDeliveryFee() {
       var filtered = [];
@@ -215,27 +256,27 @@ export default {
       return fee;
     },
     checkout() {
-      console.log(this.$store.state.deliveryAddress);
-      this.$confirm(`Checkout?`, {})
-      .then(res=>{
-      if(res){
-        var data = {
-          payment_method: this.$store.state.paymentMethod.name,
-          customer_id: this.$store.getters.userId,
-          deliveryContact: this.$store.state.user,
-          deliveryFee: this.deliveryFee,
-          address: this.address,
-          pre_order: '',
-          pre_order_date: '',
+      this.$confirm(`Checkout?`, {}).then((res) => {
+        if (res) {
+          var data = {
+            payment_method: this.$store.state.paymentMethod.name,
+            customer_id: this.$store.getters.userId,
+            deliveryContact: this.deliveryContact,
+            deliveryFee: this.deliveryFee,
+            address: this.address,
+            pre_order: this.preOrder,
+            pre_order_date: "",
+          };
+          this.$store.state.overlay = true;
+          this.$http
+            .post(`${this.$apiUrl}/customer_order?platform=web`, data)
+            .then((response) => {
+              alert(response.data.message);
+              this.$store.state.overlay = false;
+              this.$router.push({ path: "/" });
+            });
         }
-        this.$store.state.overlay = true
-        this.$http.post(`${this.$apiUrl}/customer_order?platform=web`, data)
-        .then((response) => {
-          console.log(response)
-          this.$store.state.overlay = false
-        });
-      }
-      })
+      });
     },
   },
 };

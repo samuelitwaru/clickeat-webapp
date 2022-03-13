@@ -4,10 +4,10 @@
     <div class="d-flex flex-wrap justify-center">
         <product v-for='(product, index) in products' :key="index" 
           :name='product.name' 
-          :discount='product.discount'
           :price='product.price'
           :image='product.product_picture'
-          :product='product'/>
+          :product='product'
+          :promotional_price='product.promotional_price' />
     </div>
   </div>
 </template>

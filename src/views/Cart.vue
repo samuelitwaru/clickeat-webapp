@@ -21,7 +21,7 @@
                 <div outlined class='qty'>{{item.quantity}}</div>
                 <button class="btn" @click='adjustCartQuantity(item, 1)'>+</button>
               </div>
-              {{ item.unit_price * item.quantity }}
+              {{ (item.unit_price * item.quantity)|currency }}
             </td>
             <td align="center">
               <v-btn outlined color="red" dark @click='removeFromCart(item)'>
@@ -34,7 +34,7 @@
         <tfoot>
           <tr>
             <td align="center"><strong>Total</strong></td>
-            <td colspan="2" align='center'><strong>{{ total }}</strong></td>
+            <td colspan="2" align='center'><strong>{{ total|currency }}</strong></td>
           </tr>
         </tfoot>
       </template>
@@ -85,7 +85,7 @@ export default {
       })
     },
     adjustCartQuantity(product, quantity) {
-      var customer_id = this.$store.state.user.customer_id
+      var customer_id = this.$store.getters.userId
       var newQuantity = product.quantity + quantity
       if (newQuantity > 0){
         var data = {

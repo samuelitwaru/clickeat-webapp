@@ -47,7 +47,7 @@ export default {
         contact: this.contact,
         secondContact: this.second_contact,
       };
-      var customer_id = this.$store.state.user.customer_id
+      var customer_id = this.$store.getters.userId
       this.$store.state.overlay = true;
       this.$http.put(`${this.$apiUrl}/update_info/${customer_id}?platform=web`, data)
       .then((response) => {
