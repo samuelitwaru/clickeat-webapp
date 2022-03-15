@@ -17,7 +17,7 @@ Vue.prototype.$apiUrl = `${Vue.prototype.$host}/api/v1`,
 Vue.prototype.$staticUrl = `${Vue.prototype.$host}/static`,
 
 
-Vue.prototype.$http = Axios
+// Vue.prototype.$http = Axios
 Vue.prototype.$http = Axios.create({
   httpAgent: new https.Agent({
     rejectUnauthorized: false

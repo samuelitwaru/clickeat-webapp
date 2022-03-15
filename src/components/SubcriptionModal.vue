@@ -8,7 +8,7 @@
         </div>
         <br />
         <v-alert border="left" colored-border color="primary" outlined>
-          Subscribe to receive information about our exciting promotions and personalised offers you.
+          Subscribe to receive information about our exciting promotions and personalised offers for you.
         </v-alert>
         <v-row>
           <v-col cols="12">
