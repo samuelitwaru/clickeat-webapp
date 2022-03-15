@@ -116,6 +116,7 @@ router.beforeEach((to, from, next) => {
     next('/')
   }
   next()
+  window.scrollTo(0, 0);
 })
 
 export default router
