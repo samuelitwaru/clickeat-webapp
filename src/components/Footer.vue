@@ -1,6 +1,5 @@
 <template>
   <v-footer color="black lighten-1" class="white--text mt-8">
-    <div class="curved-top">hello</div>
     <v-col cols="12" class="d-flex justify-center">
       <a href="https://facebook.com/amobittechnologies" class="mx-4"
         ><v-icon color="primary">mdi-facebook</v-icon></a
@@ -71,21 +70,21 @@ export default {
 <style>
 .curved-bottom-left {
   width: 100%;
-  border-bottom-left-radius: 10%;
+  border-bottom-left-radius: 50%;
 }
 
 .curved-bottom-right {
   width: 100%;
-  border-bottom-right-radius: 10%;
+  border-bottom-right-radius: 50%;
 }
 
 .curved-top-right {
   width: 100%;
-  border-top-right-radius: 10%;
+  border-top-right-radius: 50%;
 }
 
 .curved-top-left {
   width: 100%;
-  border-top-left-radius: 10%;
+  border-top-left-radius: 50%;
 }
 </style>

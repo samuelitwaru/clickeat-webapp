@@ -1,13 +1,13 @@
 <template>
   <div>
     <banner />
-    <v-container class="pa-0">
+    <!-- <v-container class="mx-0" style="width:100%"> -->
       <categories />
       <restaurants />
       <products title="Our Products" :products="sampleProducts" />
       <app-alert />
       <subcription-modal />
-    </v-container>
+    <!-- </v-container> -->
   </div>
 </template>
 

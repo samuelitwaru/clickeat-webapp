@@ -2,7 +2,7 @@
 <div class="py-4">
   <h3 align='center' class="pa-3">Top Categories</h3>
   <v-sheet class="d-flex justify-space-around">
-    <v-slide-group show-arrows class="pa-2">
+    <v-slide-group :show-arrows="$vuetify.breakpoint.mdAndUp" class="pa-2">
       <v-slide-item v-for="category in categories" :key="category.id" class="mx-2 rounded" >
         <router-link :to="`/categories/${category.id}`">
           <v-card align='center' width="100" height="100" elevation="0">
@@ -29,6 +29,7 @@ export default {
   },
   created () {
     this.getCategories();
+    console.log(this.$vuetify.breakpoint)
   },
   methods: {
     getCategories() {

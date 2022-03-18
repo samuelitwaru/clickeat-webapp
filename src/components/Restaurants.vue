@@ -1,5 +1,5 @@
 <template>
-  <div class="curved-top-left py-4 my-4 restaurants">
+  <div class="py-4 my-4">
     <h3 align="center" class="pa-3">Restaurants</h3>
     <!-- <v-sheet class="d-flex justify-space-around rounded-circle">
       <v-slide-group show-arrows class="pa-2">
@@ -8,7 +8,7 @@
           :key="index"
           class="mx-2"
         > -->
-    <div class="d-flex flex-wrap justify-center">
+    <div class="d-flex flex-wrap justify-center curved-top-left">
       <router-link
         :to="`/restaurants/${restaurant.id}`"
         v-for="(restaurant, index) in restaurants"
