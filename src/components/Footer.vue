@@ -1,5 +1,6 @@
 <template>
   <v-footer color="black lighten-1" class="white--text mt-8">
+    <div class="curved-top">hello</div>
     <v-col cols="12" class="d-flex justify-center">
       <a href="https://facebook.com/amobittechnologies" class="mx-4"
         ><v-icon color="primary">mdi-facebook</v-icon></a
@@ -24,15 +25,12 @@
       <hr class="my-2" width="50%;" />
       <p class="ma-auto">
         <v-icon color="white">mdi-whatsapp</v-icon> 0785857000
-        <a href="tel:0785857000">Call</a>
       </p>
       <p class="ma-auto">
         <v-icon color="white">mdi-phone</v-icon> 0752688849
-        <a href="tel:0702726557">Call</a>
       </p>
       <p class="ma-auto">
         <v-icon color="white">mdi-phone</v-icon> 0787789799
-        <a href="tel:0787789799">Call</a>
       </p>
       <p class="ma-auto">
         <v-icon color="white">mdi-email-outline</v-icon>
@@ -71,4 +69,23 @@ export default {
 </script>
 
 <style>
+.curved-bottom-left {
+  width: 100%;
+  border-bottom-left-radius: 10%;
+}
+
+.curved-bottom-right {
+  width: 100%;
+  border-bottom-right-radius: 10%;
+}
+
+.curved-top-right {
+  width: 100%;
+  border-top-right-radius: 10%;
+}
+
+.curved-top-left {
+  width: 100%;
+  border-top-left-radius: 10%;
+}
 </style>

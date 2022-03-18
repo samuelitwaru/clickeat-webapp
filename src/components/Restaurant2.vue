@@ -1,4 +1,5 @@
 <template>
+<router-link :to='`/restaurants/${id}`'>
   <v-card class="mx-auto" outlined>
     <v-list-item three-line>
       <v-list-item-content>
@@ -10,7 +11,7 @@
           >Open from {{openFrom}} to {{openTo}}</v-list-item-subtitle
         >
       </v-list-item-content>
-      <v-img 
+      <v-img
             class="rounded-circle"
             :src="$staticUrl + '/business_profile_picture/' + image" 
             max-width="80px">
@@ -18,9 +19,10 @@
     </v-list-item>
 
     <v-card-actions>
-      <router-link :to='`/restaurants/${id}`'><v-btn outlined rounded text> Visit </v-btn></router-link>
+      <v-btn outlined rounded text> Visit </v-btn>
     </v-card-actions>
   </v-card>
+  </router-link>
 </template>
 
 <script>

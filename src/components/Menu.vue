@@ -5,11 +5,11 @@
     <v-app-bar app color="primary">
       <router-link to="/">
         <div>
-          <img width="40" src="@/assets/logo-200x200.png" />
+          <img width="40" class="rounded-circle" src="@/assets/logo-yellow.jpg" />
         </div>
       </router-link>
-      <router-link to="/">
-        <v-toolbar-title class="white--text">Clickeat</v-toolbar-title>
+      <router-link to="/" v-if='$vuetify.breakpoint.mdAndUp'>
+        <v-toolbar-title class="white--text mx-2">ClickEAT</v-toolbar-title>
       </router-link>
       <v-spacer></v-spacer>
 
@@ -38,15 +38,15 @@
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" app right temporary>
+    <v-navigation-drawer v-model="drawer" app right temporary class='drawer'>
       <v-list dense>
         <router-link v-for="(link, index) in links" :key="index" :to="link.to">
           <v-list-item link>
             <v-list-item-icon>
               <v-icon>{{ link.icon }}</v-icon>
             </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>{{ link.title }}</v-list-item-title>
+            <v-list-item-content color='primary'>
+              <v-list-item-title><strong>{{ link.title }}</strong></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </router-link>
@@ -54,7 +54,7 @@
         <v-list-item link @click="logout">
           <v-list-item-icon><v-icon>mdi-logout</v-icon></v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>Logout</v-list-item-title>
+            <v-list-item-title><strong>Logout</strong></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -90,6 +90,7 @@ export default {
 
   created() {
     setInterval(this.getCartProducts, 5000);
+    console.log(this.$vuetify.breakpoint)
   },
 
   computed: {
@@ -127,5 +128,20 @@ export default {
 <style>
 a {
   text-decoration: none;
+}
+
+.v-list-item__title {
+  color:rgb(255, 38, 0);
+  font-weight: bold;
+}
+
+.drawer {
+  background-image: url("../assets/menu-bg.jpg");
+  /* height: 500px; */
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+  background-size:70vh;
+  /* position: relative; */
 }
 </style>

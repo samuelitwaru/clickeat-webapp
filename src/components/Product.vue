@@ -1,24 +1,24 @@
 <template>
-  <div align="center" class="product ma-1 pa-2 border">
+  <v-card align="center" class="product ma-1 pa-2">
     <router-link :to="/products/ + product.product_id">
       <v-img
         width="100px"
         height="100px"
         class="border"
-        color="grey"
+        color="primary"
         :src="$staticUrl + '/product_images/' + image"
       >
       </v-img>
-    </router-link>
-    <div>
+    <!-- <div> -->
       <p style="min-height: 4.5rem; max-height: 4.5rem" class="ma-auto">
         {{ name }}
       </p>
-      <p style="min-height: 3rem" class="ma-auto"><span v-if="discount"><strike>{{product.price}}</strike> {{ discount }}% OFF</span></p>
-      <p style="min-height: 25px" class="ma-auto">{{ computedPrice }}</p>
+    </router-link>
+      <p style="min-height: 3rem" class="ma-auto"><span v-if="discount"><strike>{{product.price|currency}}</strike> {{ discount }}% OFF</span></p>
+      <p style="min-height: 25px" class="ma-auto">{{ computedPrice|currency }}</p>
       <v-btn rounded color="primary" @click="addToCart" dark>Add</v-btn>
-    </div>
-  </div>
+    <!-- </div> -->
+  </v-card>
 </template>
 
 <script>

@@ -17,30 +17,8 @@
             <tbody>
               <tr>
                 <td>Date</td>
-                <td>{{ order.order_date }}</td>
+                <td colspan='2'>{{ order.order_date }}</td>
               </tr>
-              <tr>
-                <td>Paid</td>
-                <td>{{ status(order.is_paid) }}</td>
-              </tr>
-              <tr>
-                <td>Prepaired</td>
-                <td>{{ status(order.is_prepared) }}</td>
-              </tr>
-              <tr>
-                <td>Treminated</td>
-                <td>{{ status(order.is_terminated) }}</td>
-              </tr>
-              <tr>
-                <td>Received</td>
-                <td>{{ status(order.customer_received) }}</td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
-        <v-simple-table class="my-2">
-          <template>
-            <tbody>
               <tr v-for="item in order.order_items" :key="item.name">
                 <td align="center">
                   <v-img
@@ -62,12 +40,55 @@
             </tbody>
             <tfoot>
               <tr>
-                <td align="center"><strong>TOTAL</strong></td>
+                <td align="center">Item cost</td>
                 <td colspan="3" align="center">
                   <strong>{{ total | currency }}</strong>
                 </td>
               </tr>
+              <tr>
+                <td align="center">Delivery Fee</td>
+                <td colspan="2" align="center">
+                  <strong>{{ order.delivery_fee | currency }}</strong>
+                </td>
+              </tr>
+
+              <tr>
+                <td align="center"><strong>TOTAL</strong></td>
+                <td colspan="2" align="center">
+                  <strong>{{ (order.delivery_fee + total) | currency }}</strong>
+                </td>
+              </tr>
             </tfoot>
+          </template>
+        </v-simple-table>
+        <v-simple-table class="my-2">
+          <template>
+            <tbody>
+              <tr>
+                <td>Paid</td>
+                <td>
+                  <v-icon>{{ status(order.is_paid) }}</v-icon>
+                </td>
+              </tr>
+              <tr>
+                <td>Prepaired</td>
+                <td>
+                  <v-icon>{{ status(order.is_prepared) }}</v-icon>
+                </td>
+              </tr>
+              <tr>
+                <td>Treminated</td>
+                <td>
+                  <v-icon>{{ status(order.is_terminated) }}</v-icon>
+                </td>
+              </tr>
+              <tr>
+                <td>Received</td>
+                <td>
+                  <v-icon>{{ status(order.customer_received) }}</v-icon>
+                </td>
+              </tr>
+            </tbody>
           </template>
         </v-simple-table>
       </v-card-text>
@@ -99,10 +120,12 @@ export default {
     },
   },
   methods: {
-      status(status) {
-          if(status) {return 'Yes'}
-          return 'No'
-      },
+    status(status) {
+      if (status) {
+        return "mdi-check";
+      }
+      return "x";
+    },
   },
 };
 </script>

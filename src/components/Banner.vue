@@ -1,14 +1,18 @@
 <template>
-    <div class="banner-image">
+    <div class="banner-image curved-bottom-right">
         <div class="banner-text">
-            <h2 style="font-size:40px">Order Delicacies at Your Convenience</h2>
+            <h2 style="font-size:40px;">Order Delicacies at Your Convenience</h2>
 			<div class='my-2' align='center'>
 				<!-- <router-link to='/search' > -->
-				<v-text-field label="eg Chicken stew" v-model="searchString" solo style="width:30rem" @keyup.enter='search()'></v-text-field>
+				<v-text-field label="eg Chicken stew" v-model="searchString" solo style="width:30rem" @keyup.enter='search()'>
+					<template slot='append'>
+						<v-icon>search</v-icon>
+					</template>	
+				</v-text-field>
 				<!-- </router-link> -->
 			</div>
 			<div class='my-2 d-sm-none'>
-				<a href="tel:0785857000"><v-btn color="primary" outlined><v-icon>mdi-phone</v-icon> Call To Order</v-btn></a>
+				<a href="tel:0785857000"><v-btn color="yellow" outlined><v-icon>mdi-phone</v-icon> Call To Order</v-btn></a>
 			</div>
 			<div class="d-flex justify-center px-auto" v-if='!$store.getters.loggedIn'>
 				<router-link to='/signup'>
@@ -42,8 +46,9 @@ export default {
 
 <style>
 	.banner-image {
-		background-image: url("../assets/banner3.png");
-		background-color: #f5d1c3;
+		background-image: url("../assets/wp2186059.jpg");
+		background-color: #555353;
+		color: rgb(255, 255, 34);
 		height: 500px;
 		background-position: center;
 		background-repeat: no-repeat;

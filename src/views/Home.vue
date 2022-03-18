@@ -1,7 +1,7 @@
 <template>
   <div>
     <banner />
-    <v-container class="">
+    <v-container class="pa-0">
       <categories />
       <restaurants />
       <products title="Our Products" :products="sampleProducts" />
