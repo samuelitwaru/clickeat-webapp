@@ -56,12 +56,12 @@ export default {
       .then((response) => {
         if (response.data) {
           this.$store.dispatch('login', response.data)
+          this.$store.state.showSigninModal = false;
           if(this.$route.path === '/signin') this.$router.push({path: '/'})
         } else {
           this.alert = true
         }
         this.$store.state.overlay = false;
-        this.$store.state.showSigninModal = false;
       });
     },
   },
