@@ -4,7 +4,7 @@
     <!-- <v-container class="mx-0" style="width:100%"> -->
       <categories />
       <restaurants />
-      <products title="Our Products" :products="sampleProducts" />
+      <products title="Top Selling" :products="sampleProducts" />
       <app-alert />
       <subcription-modal />
     <!-- </v-container> -->
@@ -52,7 +52,9 @@ export default {
       this.$http
         .get(`${this.$apiUrl}/home_products?platform=web`)
         .then((response) => {
-          this.products = response.data.all_products;
+          this.products = response.data.top_selling_products;
+          console.log(response.data);
+          // console.log(this.products);
         });
     },
 

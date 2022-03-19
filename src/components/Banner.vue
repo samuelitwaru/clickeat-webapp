@@ -2,7 +2,7 @@
     <div class="banner-image curved-bottom-right">
         <div class="banner-text">
             <h2 style="font-size:40px;">Order Delicacies at Your Convenience</h2>
-			<div class='my-2' align='center'>
+			<div class='my-2' align='centr'>
 				<!-- <router-link to='/search' > -->
 				<v-text-field label="eg Chicken stew" v-model="searchString" solo style="width:30rem" @keyup.enter='search()'>
 					<template slot='append'>
@@ -14,7 +14,7 @@
 			<div class='my-2 d-sm-none'>
 				<a href="tel:0785857000"><v-btn color="yellow" outlined><v-icon>mdi-phone</v-icon> Call To Order</v-btn></a>
 			</div>
-			<div class="d-flex justify-center px-auto" v-if='!$store.getters.loggedIn'>
+			<div class="d-flex justify-centr px-auto" v-if='!$store.getters.loggedIn'>
 				<router-link to='/signup'>
 					<v-btn plain class='px-0' color="primary">Signup</v-btn>
 				</router-link>
@@ -57,11 +57,11 @@ export default {
 	}
 
 	.banner-text {
-		width: 70%;
-		text-align: center;
+		width: 60%;
+		/* text-align: center; */
 		position: absolute;
 		top: 50%;
-		left: 50%;
+		left: 40%;
 		transform: translate(-50%, -50%);
 	}
 	

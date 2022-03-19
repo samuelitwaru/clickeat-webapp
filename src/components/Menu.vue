@@ -2,7 +2,7 @@
   <div>
     <loading-overlay :overlay="overlay" />
     <signin-modal />
-    <v-app-bar app color="primary">
+    <v-app-bar app style='background-color: rgba(0, 0, 0, 0.7);'>
       <router-link to="/">
         <div>
           <img width="40" class="rounded-circle" src="@/assets/logo-yellow.jpg" />
@@ -14,26 +14,26 @@
       <v-spacer></v-spacer>
 
       <router-link to="/">
-        <v-btn icon>
+        <v-btn icon color="primary">
           <v-icon>mdi-home</v-icon>
         </v-btn>
       </router-link>
 
       <router-link to="/account">
-        <v-btn icon>
+        <v-btn icon color="primary">
           <v-icon>mdi-account</v-icon>
         </v-btn>
       </router-link>
 
       <router-link to="/cart">
-        <v-btn icon>
+        <v-btn icon color="primary">
           <v-icon>mdi-cart</v-icon> <span></span>
           <v-badge color="black" :content="cartCount" v-if="cartCount">
           </v-badge>
         </v-btn>
       </router-link>
 
-      <v-btn v-if="!drawer" icon @click="drawer = true">
+      <v-btn v-if="!drawer" icon @click="drawer = true" color="primary">
         <v-icon>mdi-hamburger</v-icon>
       </v-btn>
     </v-app-bar>
@@ -128,6 +128,10 @@ export default {
 <style>
 a {
   text-decoration: none;
+}
+
+.bg-transparent {
+  background-color: rgba(0, 0, 0, 0.391);
 }
 
 .v-list-item__title {
