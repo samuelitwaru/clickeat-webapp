@@ -30,7 +30,7 @@
           <!-- <v-list-item-subtitle>{{
               product.description
             }}</v-list-item-subtitle> -->
-          <v-btn rounded color="primary" dark @click="addToCart()">Add</v-btn>
+          <v-btn rounded color="primary" dark @click="addToCart()"><v-icon>mdi-cart</v-icon> Add</v-btn>
         </v-list-item-content>
       </v-list-item>
     </v-card>

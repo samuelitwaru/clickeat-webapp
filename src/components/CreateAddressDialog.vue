@@ -1,10 +1,10 @@
 <template>
-  <v-dialog transition="dialog-top-transition" max-width="600">
+  <v-dialog v-model='dialog' transition="dialog-top-transition" max-width="600">
     <template v-slot:activator="{ on, attrs }">
       <v-btn color="primary" v-bind="attrs" v-on="on">+New Address</v-btn>
     </template>
 
-    <template v-slot:default="dialog">
+    <!-- <template v-slot:default="dialog"> -->
       <v-card>
         <v-card-title class="text-h5 grey lighten-2">
           New Address
@@ -35,11 +35,11 @@
           </v-container>
         </v-card-text>
         <v-card-actions class="justify-end">
-          <v-btn text @click="dialog.value = false">Cancel</v-btn>
+          <v-btn text @click="dialog = false">Cancel</v-btn>
           <v-btn color="primary" text @click='createAddress()'>Save</v-btn>
         </v-card-actions>
       </v-card>
-    </template>
+    <!-- </template> -->
   </v-dialog>
 </template>
 
@@ -47,6 +47,7 @@
 export default {
   data() {
     return {
+      dialog: false,
       loading: false,
       search: null,
       select: null,
@@ -100,9 +101,11 @@ export default {
         }
         this.$http.post(`${this.$apiUrl}/add_address/${customer_id}?platform=web`, data)
         .then((response) => {
-          this.$parent.addresses = response.data
+          console.log(this.$parent);
+          this.$parent.customerAddresses = response.data
         });
       }
+      this.dialog = false
     },
   },
 };

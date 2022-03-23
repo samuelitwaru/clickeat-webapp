@@ -51,7 +51,6 @@ export default {
       this.$store.state.overlay = true;
       this.$http.put(`${this.$apiUrl}/update_info/${customer_id}?platform=web`, data)
       .then((response) => {
-        console.log(response.data);
         this.$store.state.user = response.data
         this.$store.state.overlay = false;
       });

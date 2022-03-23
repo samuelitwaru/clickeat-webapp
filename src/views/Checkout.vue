@@ -30,6 +30,8 @@
             @change="$store.state.deliveryAddress=selectedAddress"
           ></v-select>
 
+          <create-address-dialog />
+
           <v-card class="my-2" max-width="344" outlined v-if="selectedAddress">
             <v-list-item three-line>
               <v-list-item-content>
@@ -139,10 +141,11 @@
 
 <script>
 import CheckoutSummary from "../components/CheckoutSummary.vue";
+import CreateAddressDialog from '../components/CreateAddressDialog.vue';
 // import SelectDeliveryAddress from "../components/SelectDeliveryAddress.vue";
 // import SelectPaymentMethod from "../components/SelectPaymentMethod.vue";
 export default {
-  components: { CheckoutSummary },
+  components: { CheckoutSummary, CreateAddressDialog },
   data() {
     return {
       e1: 1,

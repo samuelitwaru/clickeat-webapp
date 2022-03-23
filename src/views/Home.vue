@@ -2,11 +2,21 @@
   <div>
     <banner />
     <!-- <v-container class="mx-0" style="width:100%"> -->
-      <categories />
-      <restaurants />
+    <categories />
+    <why />
+    <restaurants />
+    <steps />
+    <div>
       <products title="Top Selling" :products="sampleProducts" />
-      <app-alert />
-      <subcription-modal />
+      <div align="center">
+        <router-link to="/search/ " style="font-weight: bold" align="center"
+          >More..</router-link
+        >
+      </div>
+    </div>
+
+    <app-alert />
+    <subcription-modal />
     <!-- </v-container> -->
   </div>
 </template>
@@ -18,6 +28,8 @@ import Restaurants from "@/components/Restaurants";
 import Products from "@/components/Products";
 import AppAlert from "../components/AppAlert.vue";
 import SubcriptionModal from "../components/SubcriptionModal.vue";
+import Why from '../components/Why.vue';
+import Steps from '../components/Steps.vue';
 // import Favourites from '@/components/Favourites';
 
 export default {
@@ -28,23 +40,20 @@ export default {
     Products,
     AppAlert,
     SubcriptionModal,
+    Why,
+    Steps,
     // Favourites,
   },
 
   data() {
     return {
       products: [],
+      sampleProducts: [],
     };
   },
 
   created() {
     this.getTopSellingProducts();
-  },
-
-  computed: {
-    sampleProducts() {
-      return this.shuffle(this.products).slice(0, 10);
-    },
   },
 
   methods: {
@@ -53,8 +62,8 @@ export default {
         .get(`${this.$apiUrl}/home_products?platform=web`)
         .then((response) => {
           this.products = response.data.top_selling_products;
-          console.log(response.data);
-          // console.log(this.products);
+          this.setSampleProducts();
+          setInterval(this.setSampleProducts, 30000);
         });
     },
 
@@ -75,6 +84,10 @@ export default {
         ];
       }
       return array;
+    },
+
+    setSampleProducts() {
+      this.sampleProducts = this.shuffle(this.products).slice(0, 4);
     },
   },
 };

@@ -3,6 +3,7 @@
     <div class="pa-2">
       <v-text-field
         autofocus
+        label="eg Chicken stew"
         v-model="searchString"
         outlined
         placeholder="eg Goat stew"

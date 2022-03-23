@@ -1,42 +1,50 @@
 <template>
   <div>
-    <div class="pa-2">
-      <v-card class="mx-auto" max-width="500" outlined v-if="product">
-        <v-list-item-title class="text-h5 pa-2">
-              {{ product.name }}
-            </v-list-item-title>
-        <v-list-item three-line>
-          <v-img
-            :src="`${$staticUrl}/product_images/${product.product_picture}`"
-            width="80"
-            class="rounded-circle"
-          >
-          </v-img>
-          <v-list-item-content align='center' class="ma-0 pa-2">
-            <!-- <div class="text-overline mb-4"></div> -->
-            <p v-if="discount">
-              <strike>{{ product.price | currency }} </strike>{{ discount }}%
-              OFF
-            </p>
-            <p>{{ price | currency }}</p>
-            <v-list-item-subtitle>{{
-              product.description
-            }}</v-list-item-subtitle>
-            <v-btn rounded color="primary" dark @click="addToCart()">Add</v-btn>
-          </v-list-item-content>
-        </v-list-item>
+    <div class="pa-2" v-if="product">
+      <v-row>
+        <v-col cols="md-6">
+        <v-card class="mx-auto" outlined>
+          <v-list-item-title class="text-h5 pa-2">
+            {{ product.name }}
+          </v-list-item-title>
+          <v-list-item three-line>
+            <v-img
+              :src="`${$staticUrl}/product_images/${product.product_picture}`"
+              width="80"
+              class="rounded-circle"
+            >
+            </v-img>
+            <v-list-item-content align="center" class="ma-0 pa-2">
+              <!-- <div class="text-overline mb-4"></div> -->
+              <p v-if="discount">
+                <strike>{{ product.price | currency }} </strike>{{ discount }}%
+                OFF
+              </p>
+              <p>{{ price | currency }}</p>
+              <!-- <v-list-item-subtitle>{{product.description}}</v-list-item-subtitle> -->
+              <v-btn rounded color="primary" dark @click="addToCart()"
+                ><v-icon>mdi-cart</v-icon> Add</v-btn
+              >
+            </v-list-item-content>
+          </v-list-item>
 
-        <v-card-actions>
-          Rate Product
-          <v-rating
-            background-color="primary lighten-3"
-            color="primary"
-            large
-            v-model="rating"
-            @input="rateProduct()"
-          ></v-rating>
-        </v-card-actions>
-      </v-card>
+          <v-card-actions>
+            Rate Product
+            <v-rating
+              background-color="primary lighten-3"
+              color="primary"
+              large
+              v-model="rating"
+              @input="rateProduct()"
+            ></v-rating>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+      <v-col cols="6">
+        <h3>Description</h3>
+        <p>{{product.description}}</p>
+      </v-col>
+      </v-row>
     </div>
   </div>
 </template>
@@ -80,6 +88,7 @@ export default {
         )
         .then((response) => {
           this.product = response.data;
+          console.log(this.product);
         });
     },
 
@@ -101,7 +110,7 @@ export default {
             this.$store.state.overlay = false;
           });
       } else {
-        this.rating = 0
+        this.rating = 0;
         this.$store.state.showSigninModal = true;
       }
     },

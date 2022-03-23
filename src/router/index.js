@@ -14,6 +14,7 @@ import Signin from '../views/Signin.vue'
 import Restaurants from '../views/Restaurants.vue'
 import Restaurant from '../views/Restaurant.vue'
 import Category from '../views/Category.vue'
+import Categories from '../views/Categories.vue'
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -68,6 +69,11 @@ const routes = [
     path: '/restaurants',
     name: 'Restaurants',
     component: Restaurants
+  },
+  {
+    path: '/categories',
+    name: 'Categories',
+    component: Categories
   },
   {
     path: '/restaurants/:id',

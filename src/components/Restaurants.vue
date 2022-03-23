@@ -1,40 +1,60 @@
 <template>
   <div class="py-4 my-4">
     <h3 align="center" class="pa-3">Restaurants</h3>
-    <!-- <v-sheet class="d-flex justify-space-around rounded-circle">
-      <v-slide-group show-arrows class="pa-2">
-        <v-slide-item
-          v-for="(restaurant, index) in restaurants"
-          :key="index"
-          class="mx-2"
-        > -->
-    <div class="d-flex flex-wrap justify-center curved-top-left">
-      <router-link
-        :to="`/restaurants/${restaurant.id}`"
-        v-for="(restaurant, index) in restaurants"
-        :key="index"
-      >
-        <v-card
-          align="center"
-          width="120"
-          height="150"
-          class="border pa-1 ma-2"
+    <v-row>
+      <v-col class="d-flex my-auto" cols="12" md="6">
+        <p
+          align="right"
+          class="my-auto"
+          style="font-size: 1.8rem; color: #ff4800"
         >
-          <v-img
-            class="rounded-circle border"
-            :src="
-              $staticUrl +
-              '/business_profile_picture/' +
-              restaurant.business_profile_picture
-            "
-            width="80"
-            height="80"
+          Clickeat enables you to order food from your favourite restaurants
+        </p>
+        <v-img
+          src="@/assets/food-location.svg"
+          class="my-auto mx-2"
+          width="120"
+        ></v-img>
+      </v-col>
+      <v-col cols="12" md="6">
+        <div class="d-flex flex-wrap justify-center curved-top-left">
+          <router-link
+            :to="`/restaurants/${restaurant.id}`"
+            v-for="(restaurant, index) in restaurants.slice(0, 4)"
+            :key="index"
           >
-          </v-img>
-          <p>{{ restaurant.business_name }}</p>
-        </v-card>
-      </router-link>
-    </div>
+            <v-card
+              align="center"
+              width="120"
+              height="150"
+              class="border pa-1 ma-2"
+            >
+              <v-img
+                class="rounded-circle border"
+                :src="
+                  $staticUrl +
+                  '/business_profile_picture/' +
+                  restaurant.business_profile_picture
+                "
+                width="80"
+                height="80"
+              >
+              </v-img>
+              <p>{{ restaurant.business_name }}</p>
+            </v-card>
+          </router-link>
+        </div>
+        <div align="center">
+          <router-link
+            to="/restaurants"
+            style="font-weight: bold"
+            align="center"
+            >More..</router-link
+          >
+        </div>
+      </v-col>
+    </v-row>
+
     <!-- </v-slide-item>
       </v-slide-group>
     </v-sheet> -->

@@ -2,18 +2,17 @@
   <div>
     <loading-overlay :overlay="overlay" />
     <signin-modal />
-    <v-app-bar app :class='{navigation_bar:scrollPosition<54, navigation_bar_scrolled:scrollPosition>54}'>
+    <v-app-bar app class='navigation_bar_scrolled'>
       <router-link to="/">
         <div>
           <img
             width="40"
-            class="rounded-circle"
-            src="@/assets/logo-yellow.jpg"
+            src="@/assets/logo-200x200-white.png"
           />
         </div>
       </router-link>
       <router-link to="/" v-if="$vuetify.breakpoint.mdAndUp">
-        <v-toolbar-title class="white--text mx-2">ClickEAT</v-toolbar-title>
+        <v-toolbar-title class="white--text mx-2">Clickeat</v-toolbar-title>
       </router-link>
       <v-spacer></v-spacer>
 
@@ -49,9 +48,9 @@
             <v-list-item-icon>
               <v-icon>{{ link.icon }}</v-icon>
             </v-list-item-icon>
-            <v-list-item-content color="primary">
-              <v-list-item-title
-                ><strong>{{ link.title }}</strong></v-list-item-title
+            <v-list-item-content>
+              <v-list-item-title style="font-size: 1rem; font-weight:bold;"
+                >{{ link.title }}</v-list-item-title
               >
             </v-list-item-content>
           </v-list-item>
@@ -60,7 +59,7 @@
         <v-list-item link @click="logout">
           <v-list-item-icon><v-icon>mdi-logout</v-icon></v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title><strong>Logout</strong></v-list-item-title>
+            <v-list-item-title style="font-size: 1rem; font-weight:bold;"><strong>Logout</strong></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -130,7 +129,6 @@ export default {
 
     updateScroll() {
       this.scrollPosition = window.scrollY;
-      console.log(this.scrollPosition);
     },
   },
 
@@ -150,8 +148,9 @@ a {
 }
 
 .v-list-item__title {
-  color: rgb(255, 38, 0);
+  /* color: rgb(255, 38, 0); */
   font-weight: bold;
+  font-size: large;
 }
 
 .drawer {

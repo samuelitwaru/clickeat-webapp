@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h3 align="center">Restaurant</h3>
     <div v-if="restaurant">
       <div class="mx-auto" outlined>
         <v-list-item three-line>

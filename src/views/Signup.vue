@@ -70,7 +70,7 @@ export default {
     signup() {
       this.$store.state.overlay = true;
       this.$http
-        .post(`${this.$host}/register?platform=web`, this.data)
+        .post(`${this.$apiUrl}/register?platform=web`, this.data)
         .then((response) => {
           console.log(response.data);
           this.$store.state.overlay = false;

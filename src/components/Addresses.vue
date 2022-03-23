@@ -5,7 +5,7 @@
         <create-address-dialog />
       </div>
       <v-row justify="center">
-            <Address v-for='address in addresses' :key='address.id'
+            <Address v-for='address in customerAddresses' :key='address.id'
               :id='address.id'
               :name="address.name"
               :county="address.county"
@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       address: null,
-      addresses: [],
+      customerAddresses: [],
     };
   },
 
@@ -42,7 +42,8 @@ export default {
         this.$http
           .get(`${this.$apiUrl}/customer_addresses/${customer_id}?platform=web`)
           .then((response) => {
-            this.addresses = response.data;
+            this.customerAddresses = response.data;
+            console.log(this.customerAddresses);
           });
       }
     },
