@@ -4,7 +4,7 @@
             <h2 style="font-size:40px;">Order Delicacies at Your Convenience</h2>
 			<div class='my-2' align='centr'>
 				<!-- <router-link to='/search' > -->
-				<v-text-field label="eg Chicken stew" v-model="searchString" solo style="width:30rem" @keyup.enter='search()'>
+				<v-text-field label="eg pizza" v-model="searchString" solo style="width:30rem" @keyup.enter='search()'>
 					<template slot='append'>
 						<v-icon>search</v-icon>
 					</template>	
@@ -12,7 +12,7 @@
 				<!-- </router-link> -->
 			</div>
 			<div class='my-2 d-sm-none'>
-				<a href="tel:0785857000"><v-btn color="yellow" outlined><v-icon>mdi-phone</v-icon> Call To Order</v-btn></a>
+				<a href="tel:+256785857000"><v-btn color="yellow" outlined><v-icon>mdi-phone</v-icon> Call To Order</v-btn></a>
 			</div>
 			<div class="d-flex justify-centr px-auto" v-if='!$store.getters.loggedIn'>
 				<router-link to='/signup'>

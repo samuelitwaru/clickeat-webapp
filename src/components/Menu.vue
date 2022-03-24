@@ -2,6 +2,7 @@
   <div>
     <loading-overlay :overlay="overlay" />
     <signin-modal />
+    <msg-dialog />
     <v-app-bar app class='navigation_bar_scrolled'>
       <router-link to="/">
         <div>
@@ -16,9 +17,9 @@
       </router-link>
       <v-spacer></v-spacer>
 
-      <router-link to="/">
+      <router-link to="/search">
         <v-btn icon color="white">
-          <v-icon>mdi-home</v-icon>
+          <v-icon>search</v-icon>
         </v-btn>
       </router-link>
 
@@ -69,10 +70,11 @@
 
 <script>
 import LoadingOverlay from "./LoadingOverlay.vue";
+import MsgDialog from './MsgDialog.vue';
 import SigninModal from "./SigninModal.vue";
 export default {
   name: "Menu",
-  components: { LoadingOverlay, SigninModal },
+  components: { LoadingOverlay, SigninModal, MsgDialog },
   data() {
     return {
       drawer: false,

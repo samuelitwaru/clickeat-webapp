@@ -6,7 +6,7 @@
         label="eg Chicken stew"
         v-model="searchString"
         outlined
-        placeholder="eg Goat stew"
+        placeholder="eg pizza"
         @keyup.enter="search()"
       >
         <template slot="append">

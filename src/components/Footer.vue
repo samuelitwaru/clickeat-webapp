@@ -7,7 +7,7 @@
       <a href="https://twitter.com/Clickeat_ug" class="mx-4"
         ><v-icon color="primary">mdi-twitter</v-icon></a
       >
-      <a href="https://wa.me/0785857000" class="mx-4"
+      <a href="https://wa.me/+256785857000" class="mx-4"
         ><v-icon color="primary">mdi-whatsapp</v-icon></a
       >
       <a href=""><v-icon color="primary" class="mx-4">mdi-instagram</v-icon></a>

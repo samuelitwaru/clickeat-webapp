@@ -3,47 +3,86 @@
     <div class="pa-2" v-if="product">
       <v-row>
         <v-col cols="md-6">
-        <v-card class="mx-auto" outlined>
-          <v-list-item-title class="text-h5 pa-2">
-            {{ product.name }}
-          </v-list-item-title>
-          <v-list-item three-line>
-            <v-img
-              :src="`${$staticUrl}/product_images/${product.product_picture}`"
-              width="80"
-              class="rounded-circle"
-            >
-            </v-img>
-            <v-list-item-content align="center" class="ma-0 pa-2">
-              <!-- <div class="text-overline mb-4"></div> -->
-              <p v-if="discount">
-                <strike>{{ product.price | currency }} </strike>{{ discount }}%
-                OFF
-              </p>
-              <p>{{ price | currency }}</p>
-              <!-- <v-list-item-subtitle>{{product.description}}</v-list-item-subtitle> -->
-              <v-btn rounded color="primary" dark @click="addToCart()"
-                ><v-icon>mdi-cart</v-icon> Add</v-btn
+          <v-card class="mx-auto" outlined>
+            <v-list-item-title class="text-h5 pa-2">
+              {{ product.name }}
+            </v-list-item-title>
+            <v-list-item three-line>
+              <v-img
+                :src="`${$staticUrl}/product_images/${product.product_picture}`"
+                width="80"
+                class="rounded-circle"
               >
-            </v-list-item-content>
-          </v-list-item>
+              </v-img>
+              <v-list-item-content align="center" class="ma-0 pa-2">
+                <!-- <div class="text-overline mb-4"></div> -->
+                <p v-if="discount">
+                  <strike>{{ product.price | currency }} </strike
+                  >{{ discount }}% OFF
+                </p>
+                <p>{{ price | currency }}</p>
+                <!-- <v-list-item-subtitle>{{product.description}}</v-list-item-subtitle> -->
+                <v-btn rounded color="primary" dark @click="addToCart()"
+                  ><v-icon>mdi-cart</v-icon> Add</v-btn
+                >
+              </v-list-item-content>
+            </v-list-item>
 
-          <v-card-actions>
-            Rate Product
-            <v-rating
-              background-color="primary lighten-3"
-              color="primary"
-              large
-              v-model="rating"
-              @input="rateProduct()"
-            ></v-rating>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-      <v-col cols="6">
-        <h3>Description</h3>
-        <p>{{product.description}}</p>
-      </v-col>
+            <v-card-actions>
+              <v-rating
+                v-model="currentRating"
+                color="primary"
+                background-color="primary lighten-3"
+                readonly
+                size="18"
+              ></v-rating>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+        <v-col md="6">
+          <h3>Description</h3>
+          <p>{{ product.description }}</p>
+        </v-col>
+        <v-col cols="12">
+          Rate Product
+          <v-rating
+            background-color="primary lighten-3"
+            color="primary"
+            large
+            v-model="rating"
+            @input="rateProduct()"
+          ></v-rating>
+        </v-col>
+        <v-col cols="12">
+          <h3>Comments</h3>
+          <div v-if="comments.length" class="my-2">
+            <v-card
+              outlined
+              class="my-1 py-2"
+              v-for="comment in comments"
+              :key="comment.id"
+            >
+              <v-card-text class="py-0">
+                <strong>{{ comment.customerNames }}</strong>
+                <p class="my-auto">{{ comment.comment }}</p>
+                <small>{{ comment.date }}</small>
+              </v-card-text>
+            </v-card>
+          </div>
+          <p v-else class="grey--text">No comments</p>
+          <v-textarea
+            solo
+            name="input-7-4"
+            label="Write a comment"
+            v-model="comment"
+          ></v-textarea>
+          <v-btn
+            :disabled="!comment.trim()"
+            color="primary"
+            @click="createComment()"
+            >Comment</v-btn
+          >
+        </v-col>
       </v-row>
     </div>
   </div>
@@ -56,6 +95,9 @@ export default {
     return {
       product: null,
       rating: 0,
+      comments: [],
+      comment: "",
+      currentRating: 0,
     };
   },
 
@@ -89,7 +131,57 @@ export default {
         .then((response) => {
           this.product = response.data;
           console.log(this.product);
+          this.getProductComments();
+          this.getProductRating();
         });
+    },
+
+    getProductRating() {
+      console.log(
+        `${this.$apiUrl}/rate_product/${this.product.product_id}?platform=web`
+      );
+      this.$http
+        .get(
+          `${this.$apiUrl}/rate_product/${this.product.product_id}?platform=web`
+        )
+        .then((response) => {
+          this.currentRating = response.data.rate;
+          console.log(this.currentRating);
+        });
+    },
+
+    getProductComments() {
+      this.$http
+        .get(
+          `${this.$apiUrl}/product_comments/${this.product.product_id}?platform=web`
+        )
+        .then((response) => {
+          this.comments = response.data;
+          console.log(this.comments);
+        });
+    },
+
+    createComment() {
+      var customer_id = this.$store.getters.userId;
+      if (customer_id) {
+        var data = {
+          comment: this.comment.trim(),
+          productId: this.product.product_id,
+        };
+        if (data.comment) {
+          this.$http
+            .post(
+              `${this.$apiUrl}/product_comments/${customer_id}?platform=web`,
+              data
+            )
+            .then((response) => {
+              this.comments = response.data;
+              console.log(this.comments);
+            });
+        }
+      } else {
+        this.$store.state.showSigninModal = true;
+      }
     },
 
     rateProduct() {
@@ -106,7 +198,7 @@ export default {
             data
           )
           .then((response) => {
-            console.log(response.data);
+            this.currentRating = response.data.rate;
             this.$store.state.overlay = false;
           });
       } else {

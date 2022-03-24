@@ -9,7 +9,7 @@
     <div>
       <products title="Top Selling" :products="sampleProducts" />
       <div align="center">
-        <router-link to="/search/ " style="font-weight: bold" align="center"
+        <router-link to="/products" style="font-weight: bold" align="center"
           >More..</router-link
         >
       </div>

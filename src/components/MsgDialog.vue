@@ -1,16 +1,22 @@
 <template>
   <div>
-    <v-dialog v-model="dialog" max-width="290"> </v-dialog>
+    <v-dialog :value="dialog" @click:outside='$store.state.showMsgDialog=false' max-width="290"> </v-dialog>
   </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            dialog: false
-        }
+  data() {
+    return {
+    };
+  },
+  computed: {
+    dialog() {
+      return this.$store.state.showMsgDialog;
     },
+  },
+  created () {
+  },
 };
 </script>
 

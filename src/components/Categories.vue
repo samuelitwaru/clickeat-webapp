@@ -17,8 +17,10 @@
         </router-link>
       </v-slide-item>
     </v-slide-group>
-    <router-link class="my-auto px-1" style='font-weight:bold' to='/categories'>More..</router-link>
   </v-sheet>
+  <div align='center'>
+    <router-link class="my-auto px-1" style='font-weight:bold' to='/categories'>More..</router-link>
+  </div>
   </div>
 </template>
 <script>

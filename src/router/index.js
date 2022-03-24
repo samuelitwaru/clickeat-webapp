@@ -15,6 +15,7 @@ import Restaurants from '../views/Restaurants.vue'
 import Restaurant from '../views/Restaurant.vue'
 import Category from '../views/Category.vue'
 import Categories from '../views/Categories.vue'
+import Products from '../views/Products.vue'
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -37,6 +38,11 @@ const routes = [
   },
   {
     path: '/search/:searchString',
+    name: 'Search',
+    component: Search
+  },
+  {
+    path: '/search',
     name: 'Search',
     component: Search
   },
@@ -64,6 +70,11 @@ const routes = [
     path: '/drinks',
     name: 'Drinks',
     component: Drinks
+  },
+  {
+    path: '/products',
+    name: 'Products',
+    component: Products
   },
   {
     path: '/restaurants',
@@ -112,6 +123,7 @@ var protectedRoutes = [
 router.beforeEach((to, from, next) => {
   var loggedIn = store.getters.loggedIn
   var path = to.fullPath
+  store.state.overlay = false
   if (to.fullPath in protectedRoutes && !store.state.token){
     next('/');
   }

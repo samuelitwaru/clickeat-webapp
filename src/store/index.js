@@ -13,6 +13,7 @@ export default new Vuex.Store({
         paymentMethod: null,
         categories: [],
         showSigninModal: false,
+        showMsgDialog: false,
         shoMsgModal: false,
     },
     getters: {
