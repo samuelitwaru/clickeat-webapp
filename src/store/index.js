@@ -14,7 +14,10 @@ export default new Vuex.Store({
         categories: [],
         showSigninModal: false,
         showMsgDialog: false,
-        shoMsgModal: false,
+        showMsgModal: false,
+        msg: '',
+        title: '',
+        action: {},
     },
     getters: {
         loggedIn (state) {

@@ -84,13 +84,15 @@
           >
         </v-col>
       </v-row>
+      <recently-viewed />
     </div>
   </div>
 </template>
 
 <script>
+import RecentlyViewed from "../components/RecentlyViewed.vue";
 export default {
-  components: {},
+  components: { RecentlyViewed },
   data() {
     return {
       product: null,
@@ -122,6 +124,16 @@ export default {
     this.getProduct();
   },
 
+  watch: {
+    "$route.params": {
+      handler(newValue) {
+        newValue
+        this.getProduct();
+      },
+      immediate: true,
+    },
+  },
+
   methods: {
     getProduct() {
       this.$http
@@ -130,9 +142,9 @@ export default {
         )
         .then((response) => {
           this.product = response.data;
-          console.log(this.product);
           this.getProductComments();
           this.getProductRating();
+          this.registerProductToRecentlyViewed();
         });
     },
 
@@ -159,6 +171,21 @@ export default {
           this.comments = response.data;
           console.log(this.comments);
         });
+    },
+
+    registerProductToRecentlyViewed() {
+      var recentlyViewed = localStorage.getItem("recentlyViewed");
+      if (!recentlyViewed) {
+        localStorage.setItem("recentlyViewed", "[]");
+        this.registerProductToRecentlyViewed();
+        return;
+      }
+      recentlyViewed = JSON.parse(recentlyViewed);
+      recentlyViewed = recentlyViewed
+        .filter((product) => this.product.product_id != product.product_id)
+        .slice(0, 4);
+      recentlyViewed.push(this.product);
+      localStorage.setItem("recentlyViewed", JSON.stringify(recentlyViewed));
     },
 
     createComment() {
@@ -209,7 +236,6 @@ export default {
 
     addToCart() {
       var customer_id = this.$store.getters.userId;
-      console.log(this.product);
       if (customer_id) {
         var data = {
           product_id: this.product.product_id,
@@ -226,8 +252,13 @@ export default {
         this.$http
           .post(`${this.$apiUrl}/addToCart?platform=web`, data)
           .then((response) => {
-            alert(response.data.message);
             this.$store.state.overlay = false;
+            this.$alert(
+              "Alert",
+              response.data.message,
+              "Proceed To Cart",
+              "/cart"
+            );
           });
       } else {
         this.$store.state.showSigninModal = true;

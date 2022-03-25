@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="px-2">
     <v-card class="mx-auto my-4 pa-4" width="400px">
-      <h3 align="center" class="pa-3">SIGNIN</h3>
+      <h3 align="center" class="pa-3 primary--text">SIGNIN</h3>
       <v-alert transition="scale-transition" outlined dismissible type="error" v-model='alert'>
         User not found!
       </v-alert>
@@ -11,6 +11,7 @@
           v-model="telephone"
           label="Telephone Number"
           required
+          v-on:keyup.enter="signin"
         ></v-text-field>
 
         <v-text-field
@@ -18,10 +19,11 @@
           name="password"
           label="Enter your password"
           type="password"
+          v-on:keyup.enter="signin"
         ></v-text-field>
 
         <div align="center">
-          <v-btn color="primary" class="mr-4" @click="signin">Signin</v-btn>
+          <v-btn data-cy="button-login" color="primary" class="mr-4" @click="signin">Signin</v-btn>
 
           <p class="mt-4">
             <small>Don't have an Account ?</small>

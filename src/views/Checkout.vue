@@ -27,7 +27,7 @@
             persistent-hint
             return-object
             single-line
-            @change="$store.state.deliveryAddress=selectedAddress"
+            @change="$store.state.deliveryAddress = selectedAddress"
           ></v-select>
 
           <create-address-dialog />
@@ -141,7 +141,7 @@
 
 <script>
 import CheckoutSummary from "../components/CheckoutSummary.vue";
-import CreateAddressDialog from '../components/CreateAddressDialog.vue';
+import CreateAddressDialog from "../components/CreateAddressDialog.vue";
 // import SelectDeliveryAddress from "../components/SelectDeliveryAddress.vue";
 // import SelectPaymentMethod from "../components/SelectPaymentMethod.vue";
 export default {
@@ -233,9 +233,9 @@ export default {
       if (filtered.length) {
         this.selectedAddress = filtered[0];
         return;
-      }else if (this.customerAddresses.length) {
-        this.selectedAddress = this.customerAddresses[0]
-        return
+      } else if (this.customerAddresses.length) {
+        this.selectedAddress = this.customerAddresses[0];
+        return;
       }
       this.selectedAddress = {};
       console.log(this.selectedAddress);
@@ -274,7 +274,12 @@ export default {
           this.$http
             .post(`${this.$apiUrl}/customer_order?platform=web`, data)
             .then((response) => {
-              alert(response.data.message);
+              this.$alert(
+                "Alert",
+                response.data.message,
+                "View Orders",
+                "/orders"
+              );
               this.$store.state.overlay = false;
               this.$router.push({ path: "/" });
             });

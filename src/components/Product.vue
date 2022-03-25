@@ -27,37 +27,18 @@
             <strike>{{ product.price | currency }} </strike>{{ discount }}% OFF
           </p>
           <p>{{ computedPrice | currency }}</p>
-          <!-- <v-list-item-subtitle>{{
-              product.description
-            }}</v-list-item-subtitle> -->
+          <p>{{ restaurant }}</p>
           <v-btn rounded color="primary" dark @click="addToCart()"><v-icon>mdi-cart</v-icon> Add</v-btn>
         </v-list-item-content>
       </v-list-item>
     </v-card>
   </router-link>
-  <!-- <v-card align="center" class="product ma-1 pa-2">
-    <router-link :to="/products/ + product.product_id">
-      <v-img
-        width="100px"
-        height="100px"
-        class="border"
-        color="primary"
-        :src="$staticUrl + '/product_images/' + image"
-      >
-      </v-img>
-      <p style="min-height: 4.5rem; max-height: 4.5rem" class="ma-auto">
-        {{ name }}
-      </p>
-    </router-link>
-      <p style="min-height: 3rem" class="ma-auto"><span v-if="discount"><strike>{{product.price|currency}}</strike> {{ discount }}% OFF</span></p>
-      <p style="min-height: 25px" class="ma-auto">{{ computedPrice|currency }}</p>
-      <v-btn rounded color="primary" @click="addToCart" dark>Add</v-btn>
-  </v-card> -->
+  
 </template>
 
 <script>
 export default {
-  props: ["name", "price", "image", "product", "promotional_price"],
+  props: ["id", "name", "price", "image", "product", "promotional_price", "restaurant"],
   data() {
     return {};
   },
@@ -98,12 +79,16 @@ export default {
         this.$http
           .post(`${this.$apiUrl}/addToCart?platform=web`, data)
           .then((response) => {
-            alert(response.data.message);
             this.$store.state.overlay = false;
+            this.$alert(
+              "Alert",
+              response.data.message,
+              "Proceed To Cart",
+              "/cart"
+            );
           });
       } else {
         this.$store.state.showSigninModal = true;
-        // this.$store.commit('setShowSigninModal', false)
         console.log(this.$store.state.showSigninModal);
       }
     },

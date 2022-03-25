@@ -1,23 +1,26 @@
 <template>
-  <div>
+  <div class="px-2">
     <v-card class="mx-auto my-4 pa-4" width="400px">
-      <h3 align="center" class="pa-3">SIGNUP</h3>
+      <h3 align="center" class="pa-3 primary--text">SIGNUP</h3>
       <v-form ref="form">
         <v-text-field
           v-model="data.names"
           type="text"
           label="Your Name"
           required
+          v-on:keyup.enter="signup"
         ></v-text-field>
         <v-text-field
           v-model="data.email"
           label="Your E-mail"
           required
+          v-on:keyup.enter="signup"
         ></v-text-field>
         <v-text-field
           v-model="data.contact"
           label="Your Contact"
           required
+          v-on:keyup.enter="signup"
         ></v-text-field>
 
         <v-text-field
@@ -25,12 +28,14 @@
           v-model="data.password"
           label="Enter your password"
           type="password"
+          v-on:keyup.enter="signup"
         ></v-text-field>
         <v-text-field
           name="rePssword"
           v-model="data.rePassword"
           label="Confirm your password"
           type="password"
+          v-on:keyup.enter="signup"
         ></v-text-field>
 
         <div align="center">

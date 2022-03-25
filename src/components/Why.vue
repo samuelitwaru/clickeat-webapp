@@ -33,7 +33,7 @@
             </td>
             <td>
               <p class="text-h6 my-auto">
-                Swift delivery service, worry no more anout delays
+                Swift delivery service, worry no more about delays
               </p>
             </td>
           </tr>

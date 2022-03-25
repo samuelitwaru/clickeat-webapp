@@ -124,7 +124,7 @@ export default {
       if (status) {
         return "mdi-check";
       }
-      return "x";
+      return "mdi-close";
     },
   },
 };

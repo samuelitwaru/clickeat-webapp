@@ -7,6 +7,7 @@
           :price='product.price'
           :image='product.product_picture'
           :product='product'
+          :restaurant='product.resturant'
           :promotional_price='product.promotional_price' />
     </div>
   </div>

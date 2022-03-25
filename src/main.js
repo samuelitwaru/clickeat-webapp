@@ -25,6 +25,16 @@ Vue.prototype.$http = Axios.create({
   })
 })
 
+Vue.prototype.$alert = (title, msg, actionText, actionUrl) => {
+  store.state.msg = msg
+  store.state.title = title
+  store.state.action = {
+    text: actionText,
+    url: actionUrl,
+  }
+  store.state.showMsgDialog = true
+}
+
 
 // Vue.prototype.$height = () => {
 //   switch (this.$vuetify.breakpoint.name) {
