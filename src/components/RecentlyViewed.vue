@@ -1,6 +1,7 @@
 <template>
   <div>
     <h3 align="center" class="pa-3">Recently Viewed</h3>
+    <v-divider class="mx-0 my-4"></v-divider>
     <v-sheet class="d-flex justify-space-around">
       <v-slide-group :show-arrows="$vuetify.breakpoint.mdAndUp" class="pa-2">
         <v-slide-item

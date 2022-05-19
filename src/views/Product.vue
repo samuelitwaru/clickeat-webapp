@@ -2,6 +2,108 @@
   <div>
     <div class="pa-2" v-if="product">
       <v-row>
+        <v-col cols="md-3">
+          <v-card
+            class="my-0"
+          >
+            <v-img
+            height="250"
+            :src="`${$staticUrl}/product_images/${product.product_picture}`"
+            ></v-img>
+            <v-card-title style="font-size: 14px;">{{ product.name }}</v-card-title>
+            <v-card-subtitle class="mx-auto">
+              <p align="right" v-if="discount">
+              <strike style="color:red; font-size:11px; font-weight:bold;">
+                {{ product.price | currency }}
+              </strike> | <b>{{ discount }}% OFF</b>
+              </p>
+              <p align="right"><b>{{ price | currency }}</b></p>
+              <v-divider class="mx-2"></v-divider>
+            </v-card-subtitle>
+            
+
+            <v-row
+              align="center"
+              class="mx-0 my-0"
+            >
+              <v-row>
+                <v-col class="md-8">
+                  <div class="grey--text ms-4" style="font-size: 10px; font-family:'Courier New', Courier, monospace;">
+                  {{ product.resturant }}
+                  </div>
+                </v-col>
+                <v-col class="md-4">
+                  <v-rating
+                  v-model="currentRating"
+                  color="amber"
+                  dense
+                  half-increments
+                  readonly
+                  size="14"
+                  ></v-rating>
+                </v-col>
+              </v-row>
+            </v-row>
+
+            <v-list-item-content align="center" class="ma-0 pa-2">
+              <!-- <div class="text-overline mb-4"></div> -->
+              <!-- <v-list-item-subtitle>{{product.description}}</v-list-item-subtitle> -->
+              <v-btn rounded color="primary" dark @click="addToCart()"
+                ><v-icon>mdi-cart</v-icon> Add</v-btn
+              >
+            </v-list-item-content>
+          
+          </v-card>
+        </v-col>
+        <v-col cols="md-9">
+          <v-card
+            class="pa-2"
+          >
+            <h3>Rate Product</h3>
+            <v-rating
+              background-color="primary lighten-3"
+              color="primary"
+              large
+              v-model="rating"
+              @input="rateProduct()"
+            ></v-rating>
+            <h3>Description</h3>
+            <p style="font-family:'Courier New', Courier, monospace;">{{ product.description }}</p>
+
+            <h3>Comments</h3>
+            <div v-if="comments.length" class="my-2">
+              <v-card
+                outlined
+                class="my-1 py-2"
+                v-for="comment in comments"
+                :key="comment.id"
+              >
+                <v-card-text class="py-0">
+                  <strong>{{ comment.customerNames }}</strong>
+                  <p class="my-auto">{{ comment.comment }}</p>
+                  <small>{{ comment.date }}</small>
+                </v-card-text>
+              </v-card>
+            </div>
+            <p v-else class="grey--text">No comments</p>
+            <v-textarea
+              solo
+              name="input-7-4"
+              label="Write a comment"
+              v-model="comment"
+            ></v-textarea>
+            <v-btn
+              :disabled="!comment.trim()"
+              color="primary"
+              @click="createComment()"
+              >Comment</v-btn
+            >
+          </v-card>
+        </v-col>
+      </v-row>
+      
+      
+      <!-- <v-row>
         <v-col cols="md-6">
           <v-card class="mx-auto" outlined>
             <v-list-item-title class="text-h5 pa-2">
@@ -15,13 +117,11 @@
               >
               </v-img>
               <v-list-item-content align="center" class="ma-0 pa-2">
-                <!-- <div class="text-overline mb-4"></div> -->
                 <p v-if="discount">
                   <strike>{{ product.price | currency }} </strike
                   >{{ discount }}% OFF
                 </p>
                 <p>{{ price | currency }}</p>
-                <!-- <v-list-item-subtitle>{{product.description}}</v-list-item-subtitle> -->
                 <v-btn rounded color="primary" dark @click="addToCart()"
                   ><v-icon>mdi-cart</v-icon> Add</v-btn
                 >
@@ -83,7 +183,7 @@
             >Comment</v-btn
           >
         </v-col>
-      </v-row>
+      </v-row> -->
       <recently-viewed />
     </div>
   </div>

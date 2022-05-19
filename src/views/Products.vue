@@ -1,5 +1,39 @@
 <template>
   <div>
+    <!-- <v-row align="center" class="mx-auto">
+        <v-col cols="4">
+          <v-select
+            v-model="e1"
+            :items="states"
+            menu-props="auto"
+            label="Select"
+            hide-details
+            prepend-icon="mdi-food"
+            single-line
+          ></v-select>
+        </v-col>
+
+        <v-col cols="4">
+          <v-text-field
+            label="Price"
+            prepend-icon="mdi-cash"
+            v-model="price"
+          ></v-text-field>
+        </v-col>
+
+        <v-col cols="4">
+          <v-select
+            v-model="e1"
+            :items="states"
+            menu-props="auto"
+            label="Select"
+            hide-details
+            prepend-icon="mdi-pizza"
+            single-line
+          ></v-select>
+        </v-col>
+    </v-row> -->
+    <!-- <input type="text" v-model="price" placeholder="price"/> -->
     <products :products="products" />
   </div>
 </template>
@@ -11,6 +45,7 @@ export default {
   data() {
     return {
       products: [],
+      price: ""
     };
   },
   created () {
@@ -27,8 +62,15 @@ export default {
         });
     },
   },
+  computed: {
+    filteredPdts: function(){
+      console.log(">>>>>>>>", this.price);
+      return "tea"
+    }
+  }
 };
 </script>
 
 <style>
+
 </style>

@@ -1,8 +1,93 @@
 <template>
   <v-container>
-    <h3 align="center">A Few Clicks To Complete An Order</h3>
+    <h3 align="center">How to make an order</h3>
     <v-divider class="my-2"></v-divider>
-    <v-simple-table>
+    <v-timeline>
+      <v-timeline-item>
+        <template v-slot:icon>
+          <v-avatar>
+            <img src="@/assets/visit-website.png">
+          </v-avatar>
+        </template>
+        <template v-slot:opposite>
+          <span>
+            
+          </span>
+        </template>
+        <v-card class="elevation-2">
+          <v-card-title class="text-h5" style="color:#FF5722;">
+            Visit Site
+          </v-card-title>
+          <v-card-text>
+              Visit clickeat via app or web portal to view items from different suppliers within your area.
+          </v-card-text>
+        </v-card>
+      </v-timeline-item>
+      <v-timeline-item>
+        <template v-slot:icon>
+          <v-avatar>
+            <img src="@/assets/add-to-cart.png">
+          </v-avatar>
+        </template>
+        <template v-slot:opposite>
+        <span>
+          
+        </span>
+      </template>
+      <v-card class="elevation-2">
+        <v-card-title class="text-h5" style="color:#FF5722;">
+          Select
+        </v-card-title>
+        <v-card-text>
+          Make a choice of the items you need by adding them to cart.
+        </v-card-text>
+      </v-card>
+      </v-timeline-item>
+      <v-timeline-item>
+        <template v-slot:icon>
+          <v-avatar>
+            <img src="@/assets/delivery.png">
+          </v-avatar>
+        </template>
+        <template v-slot:opposite>
+          <span>
+            
+          </span>
+        </template>
+        <v-card class="elevation-2">
+          <v-card-title class="text-h5" style="color:#FF5722;">
+            Process
+          </v-card-title>
+          <v-card-text>
+              Go to Cart and proceed to tell us where you need your order delivered.
+          </v-card-text>
+        </v-card>
+      </v-timeline-item>
+
+      <v-timeline-item>
+        <template v-slot:icon>
+          <v-avatar>
+            <img src="@/assets/payment-method-2.png">
+          </v-avatar>
+        </template>
+        <template v-slot:opposite>
+          <span>
+            
+          </span>
+        </template>
+        <v-card class="elevation-2">
+          <v-card-title class="text-h5" style="color:#FF5722;">
+            Select payment
+          </v-card-title>
+          <v-card-text>
+            Choose a payment method, relax and wait for the order at your doorstep in minutes.
+          </v-card-text>
+        </v-card>
+      </v-timeline-item>
+    </v-timeline>
+
+
+    <!-- <v-simple-table>
       <template>
         <tbody>
           <tr>
@@ -71,7 +156,7 @@
         </tbody>
       </template>
     </v-simple-table>
-    <v-divider class="my-2"></v-divider>
+    <v-divider class="my-2"></v-divider> -->
   </v-container>
 </template>
 

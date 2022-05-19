@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h3 align='center' class="pa-3" v-if='title'>{{title}}</h3>
+    <v-container fluid>
+    </v-container>
+    <h2 align='center' class="pa-3" v-if='title'>{{title}}</h2>
     <div class="d-flex flex-wrap justify-center">
         <product v-for='(product, index) in products' :key="index" 
           :name='product.name' 
@@ -28,7 +30,7 @@ export default {
       ]
     },
   },
-    components: {
+  components: {
         Product,
     },
 }

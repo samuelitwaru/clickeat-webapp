@@ -2,12 +2,8 @@
   <div>
     <banner />
     <!-- <v-container class="mx-0" style="width:100%"> -->
-    <categories />
-    <why />
-    <restaurants />
-    <steps />
     <div>
-      <products title="Top Selling" :products="sampleProducts" />
+      <products title="Top Selling Products" :products="sampleProducts" />
       <div align="center">
         <router-link to="/products" style="font-weight: bold" align="center"
           >More..</router-link
@@ -15,6 +11,19 @@
       </div>
     </div>
 
+    <categories />
+    <restaurants />
+    <!-- <v-divider class="mx-0 my-4"></v-divider> -->
+    <v-row>
+      <v-col cols="3">
+      </v-col>
+      <v-col cols="6">
+        <steps />
+      </v-col>
+      <v-col cols="3">
+      </v-col>
+    </v-row>
+    <why />
     <app-alert />
     <subcription-modal />
     <!-- </v-container> -->

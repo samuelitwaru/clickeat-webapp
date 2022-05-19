@@ -1,9 +1,9 @@
 <template>
 <div class="py-4">
-  <h3 align='center' class="pa-3">Top Categories</h3>
+  <h2 align='center' class="pa-3">Top Categories</h2>
   <v-sheet class="d-flex justify-space-around">
     <v-slide-group :show-arrows="$vuetify.breakpoint.mdAndUp" class="pa-2">
-      <v-slide-item v-for="category in categories.slice(0, 5)" :key="category.id" class="mx-2 rounded" >
+      <v-slide-item v-for="category in categories.slice(0, 8)" :key="category.id" class="mx-2 rounded" >
         <router-link :to="`/categories/${category.id}`">
           <v-card align='center' width="100" height="100" elevation="0">
             <v-img 
@@ -12,7 +12,7 @@
                 width="100px"
                 height="100">
             </v-img>
-            <p height='50' style="" class='rounded naming-text px-1'><strong>{{category.name}}</strong></p>
+            <p height='50' style="color:red; font-family:courier;" class='rounded naming-text px-1'><strong>{{category.name}}</strong></p>
           </v-card>
         </router-link>
       </v-slide-item>
@@ -31,7 +31,7 @@ export default {
     }
   },
   created () {
-    this.getCategories();
+    this.getCategories();  
   },
   methods: {
     getCategories() {
