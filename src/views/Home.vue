@@ -15,12 +15,10 @@
     <restaurants />
     <!-- <v-divider class="mx-0 my-4"></v-divider> -->
     <v-row>
-      <v-col cols="3">
-      </v-col>
-      <v-col cols="6">
-        <steps />
-      </v-col>
-      <v-col cols="3">
+      <v-col cols="12" sm="12">
+        <div align="center">
+          <steps />
+        </div> 
       </v-col>
     </v-row>
     <why />

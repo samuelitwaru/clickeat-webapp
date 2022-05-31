@@ -11,17 +11,17 @@
         </template>
         <template v-slot:opposite>
           <span>
-            
+            STEP 1
           </span>
         </template>
-        <v-card class="elevation-2">
-          <v-card-title class="text-h5" style="color:#FF5722;">
-            Visit Site
-          </v-card-title>
-          <v-card-text>
-              Visit clickeat via app or web portal to view items from different suppliers within your area.
-          </v-card-text>
-        </v-card>
+          <v-card class="elevation-2">
+              <v-card-title class="text-h5" style="color:#FF5722;">
+                <p>Visit Site</p>
+              </v-card-title>
+              <v-card-text>
+                  Visit clickeat via app or web portal to view items from different suppliers within your area.
+              </v-card-text>
+          </v-card>
       </v-timeline-item>
       <v-timeline-item>
         <template v-slot:icon>
@@ -31,7 +31,7 @@
         </template>
         <template v-slot:opposite>
         <span>
-          
+          STEP 2
         </span>
       </template>
       <v-card class="elevation-2">
@@ -51,7 +51,7 @@
         </template>
         <template v-slot:opposite>
           <span>
-            
+            STEP 3
           </span>
         </template>
         <v-card class="elevation-2">
@@ -72,7 +72,7 @@
         </template>
         <template v-slot:opposite>
           <span>
-            
+            STEP 4
           </span>
         </template>
         <v-card class="elevation-2">
@@ -165,4 +165,8 @@ export default {};
 </script>
 
 <style>
+/* .v-card__text, .v-card__title {
+  word-break: break-word; 
+  word-wrap: normal;
+} */
 </style>

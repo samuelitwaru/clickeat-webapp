@@ -53,13 +53,21 @@ export default {
   },
   methods: {
     getProducts() {
-      this.$store.state.overlay = true;
-      this.$http
+      this.$store.state.overlay = true; 
+      if(this.$store.state.all_products.length === 0){
+        this.$http
         .get(`${this.$apiUrl}/home_products?platform=web`)
         .then((response) => {
+          this.$store.state.all_products = response.data.all_products;
           this.products = response.data.all_products;
           this.$store.state.overlay = false;
         });
+        
+      }else {
+        this.products = this.$store.state.all_products;
+        this.$store.state.overlay = false;
+      }
+      
     },
   },
   computed: {

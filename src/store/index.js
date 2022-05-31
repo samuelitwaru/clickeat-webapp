@@ -18,6 +18,7 @@ export default new Vuex.Store({
         msg: '',
         title: '',
         action: {},
+        all_products: []
     },
     getters: {
         loggedIn (state) {
