@@ -185,14 +185,19 @@
         </v-col>
       </v-row> -->
       <recently-viewed />
+      <sub-cat-products v-bind:products="subCatProducts"></sub-cat-products>
+
+      <!-- Get products from the same subgategory -->
+
     </div>
   </div>
 </template>
 
 <script>
 import RecentlyViewed from "../components/RecentlyViewed.vue";
+import SubCatProducts from "../components/subCatProducts.vue";
 export default {
-  components: { RecentlyViewed },
+  components: { RecentlyViewed, SubCatProducts },
   data() {
     return {
       product: null,
@@ -200,6 +205,7 @@ export default {
       comments: [],
       comment: "",
       currentRating: 0,
+      subCatProducts: []
     };
   },
 
@@ -245,6 +251,7 @@ export default {
           this.getProductComments();
           this.getProductRating();
           this.registerProductToRecentlyViewed();
+          this.getSubCatProducts();
         });
     },
 
@@ -364,6 +371,16 @@ export default {
         this.$store.state.showSigninModal = true;
       }
     },
+
+    getSubCatProducts(){
+      this.$http
+          .get(
+            `${this.$apiUrl}/sub_cat_products/${this.product.sub_category_id}?platform=web`
+          )
+          .then((response) => {
+          this.subCatProducts = response.data;
+        });
+    }
   },
 };
 </script>

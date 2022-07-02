@@ -26,7 +26,7 @@
         <v-icon color="white">mdi-whatsapp</v-icon> 0785857000
       </p>
       <p class="ma-auto">
-        <v-icon color="white">mdi-phone</v-icon> 0752688849
+        <v-icon color="white">mdi-phone</v-icon> 0752098444
       </p>
       <p class="ma-auto">
         <v-icon color="white">mdi-phone</v-icon> 0787789799

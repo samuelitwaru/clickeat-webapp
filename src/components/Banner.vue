@@ -11,9 +11,7 @@
 				</v-text-field>
 				<!-- </router-link> -->
 			</div>
-			<div class='my-2 d-sm-none'>
-				<a href="tel:+256785857000"><v-btn color="yellow" outlined><v-icon>mdi-phone</v-icon> Call To Order</v-btn></a>
-			</div>
+		
 			<div class="d-flex justify-centr px-auto" v-if='!$store.getters.loggedIn'>
 				<router-link to='/signup'>
 					<v-btn plain class='px-0' color="primary">Signup</v-btn>
@@ -22,6 +20,10 @@
 				<router-link to='/signin'>
 					<v-btn color="primary" dark>Signin</v-btn>
 				</router-link>
+			</div>
+			<br>
+			<div>
+				<a href="tel:+256785857000"><v-btn color="yellow" outlined><v-icon>mdi-phone</v-icon> Call To Order</v-btn></a>
 			</div>
 		</div>
 		<div>

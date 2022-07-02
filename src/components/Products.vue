@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-container fluid>
-    </v-container>
+    <!-- <v-container fluid> -->
+    <!-- </v-container> -->
     <h2 align='center' class="pa-3" v-if='title'>{{title}}</h2>
     <div class="d-flex flex-wrap justify-center">
         <product v-for='(product, index) in products' :key="index" 
