@@ -23,11 +23,20 @@
         >
         </v-img>
         <v-list-item-content class="ma-0 pa-0" align='center'>
-          <p v-if="discount">
-            <strike>{{ product.price | currency }} </strike>{{ discount }}% OFF
+          <p v-if="discount" style="color:red; font-size:11px; font-weight:bold;">
+            <strike >{{ product.price | currency }} </strike>{{ discount }}% OFF
           </p>
           <p>{{ computedPrice | currency }}</p>
-          <p>{{ restaurant }}</p>
+          <v-rating
+          :value="4.5"
+          color="amber"
+          dense
+          half-increments
+          readonly
+          size="14"
+          ></v-rating>
+          <v-divider class="mx-2"></v-divider>
+          <p style="font-size: 9px; font-weight:bold; font-family: courier;">{{ restaurant }}</p>
           <v-btn rounded color="primary" dark @click="addToCart()"><v-icon>mdi-cart</v-icon> Add</v-btn>
         </v-list-item-content>
       </v-list-item>

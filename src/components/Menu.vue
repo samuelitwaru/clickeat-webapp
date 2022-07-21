@@ -4,14 +4,22 @@
     <signin-modal />
     <msg-dialog />
     <v-app-bar app class='navigation_bar_scrolled'>
-      <router-link to="/">
+      <v-btn v-if="!drawer" icon @click="drawer = true" color="white">
         <div>
           <img
             width="40"
             src="@/assets/logo-200x200-white.png"
           />
         </div>
-      </router-link>
+      </v-btn>
+      <!-- <router-link to="/">
+        <div>
+          <img
+            width="40"
+            src="@/assets/logo-200x200-white.png"
+          />
+        </div>
+      </router-link> -->
       <router-link to="/" v-if="$vuetify.breakpoint.mdAndUp">
         <v-toolbar-title class="white--text mx-2">Clickeat</v-toolbar-title>
       </router-link>
@@ -37,12 +45,12 @@
         </v-btn>
       </router-link>
 
-      <v-btn v-if="!drawer" icon @click="drawer = true" color="white">
+      <!-- <v-btn v-if="!drawer" icon @click="drawer = true" color="white">
         <v-icon>mdi-hamburger</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" app right temporary class="drawer">
+    <v-navigation-drawer v-model="drawer" app left temporary class="drawer">
       <v-list dense>
         <router-link v-for="(link, index) in links" :key="index" :to="link.to">
           <v-list-item link>
@@ -60,7 +68,7 @@
         <v-list-item link @click="logout">
           <v-list-item-icon><v-icon>mdi-logout</v-icon></v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title style="font-size: 1rem; font-weight:bold;"><strong>Logout</strong></v-list-item-title>
+            <v-list-item-title style="font-size: 1rem; font-weight:bold;"><strong>LogIn</strong></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>

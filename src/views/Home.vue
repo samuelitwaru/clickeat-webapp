@@ -2,12 +2,28 @@
   <div>
     <banner />
     <!-- <v-container class="mx-0" style="width:100%"> -->
-    <categories />
-    <why />
-    <restaurants />
-    <steps />
     <div>
-      <products title="Top Selling" :products="sampleProducts" />
+      <!-- <products title="Top Selling Products" :products="sampleProducts" /> -->
+      <h2 align='center' class="pa-3" v-if='title'>{{title}}</h2>
+      <v-sheet class="d-flex justify-space-around">
+        <v-slide-group :show-arrows="$vuetify.breakpoint.mdAndUp" class="pa-2">
+          <v-slide-item
+            v-for="product in sampleProducts"
+            :key="product.product_id"
+            class="mx-2"
+          >
+              <product
+                :id="product.product_id"
+                :name="product.name"
+                :price="product.price"
+                :image="product.product_picture"
+                :product="product"
+                :promotional_price="product.promotional_price"
+                :restaurant="product.resturant"
+              />
+          </v-slide-item>
+        </v-slide-group>
+      </v-sheet>
       <div align="center">
         <router-link to="/products" style="font-weight: bold" align="center"
           >More..</router-link
@@ -15,6 +31,17 @@
       </div>
     </div>
 
+    <categories />
+    <restaurants />
+    <!-- <v-divider class="mx-0 my-4"></v-divider> -->
+    <v-row>
+      <v-col cols="12" sm="12">
+        <div align="center">
+          <steps />
+        </div> 
+      </v-col>
+    </v-row>
+    <why />
     <app-alert />
     <subcription-modal />
     <!-- </v-container> -->
@@ -25,7 +52,8 @@
 import Banner from "@/components/Banner";
 import Categories from "@/components/Categories";
 import Restaurants from "@/components/Restaurants";
-import Products from "@/components/Products";
+// import Products from "@/components/Products";
+import Product from '@/components/Product'
 import AppAlert from "../components/AppAlert.vue";
 import SubcriptionModal from "../components/SubcriptionModal.vue";
 import Why from '../components/Why.vue';
@@ -37,7 +65,7 @@ export default {
     Banner,
     Categories,
     Restaurants,
-    Products,
+    Product,
     AppAlert,
     SubcriptionModal,
     Why,
@@ -49,6 +77,7 @@ export default {
     return {
       products: [],
       sampleProducts: [],
+      title: "Top Selling Products"
     };
   },
 
@@ -87,7 +116,7 @@ export default {
     },
 
     setSampleProducts() {
-      this.sampleProducts = this.shuffle(this.products).slice(0, 4);
+      this.sampleProducts = this.shuffle(this.products).slice(0, 5);
     },
   },
 };

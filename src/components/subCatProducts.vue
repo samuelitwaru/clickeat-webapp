@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 align="center" class="pa-3">Recently Viewed</h3>
+    <h3 align="center" class="pa-3">Products You May Like</h3>
     <v-divider class="mx-0 my-4"></v-divider>
     <v-sheet class="d-flex justify-space-around">
       <v-slide-group :show-arrows="$vuetify.breakpoint.mdAndUp" class="pa-2">
@@ -28,21 +28,11 @@
 import Product from "./Product.vue";
 export default {
   components: { Product },
-  name: "RecentlyViewd",
+  props: ['products'],
   data() {
     return {
-      products: [],
+    
     };
-  },
-  created() {
-    this.getRecentlyViewed();
-  },
-  methods: {
-    getRecentlyViewed() {
-      this.products = JSON.parse(
-        localStorage.getItem("recentlyViewed", "[]")
-      ).reverse();
-    },
   },
 };
 </script>

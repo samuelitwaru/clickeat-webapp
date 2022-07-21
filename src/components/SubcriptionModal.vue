@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" persistent max-width="600px">
+  <v-dialog v-model="dialog" persistent max-width="500px">
     <v-card class="pa-0 ma-0">
       <v-container>
         <div class="d-flex justify-space-between">
