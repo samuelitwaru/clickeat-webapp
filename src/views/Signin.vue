@@ -42,8 +42,8 @@ export default {
   components: {  },
   data() {
     return {
-      telephone: "samuelitwaru@gmail.com",
-      password: "123",
+      telephone: "",
+      password: "",
       alert: false
     };
   },

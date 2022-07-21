@@ -59,12 +59,12 @@ export default {
   data() {
     return {
       data: {
-        names: "Samuel Itwaru",
-        email: "samuelitwaru@gmail.com",
-        contact: "0781902516",
+        names: "",
+        email: "",
+        contact: "",
         profile_picture: "",
-        password: "123",
-        rePassword: "123",
+        password: "",
+        rePassword: "",
       },
     };
   },
